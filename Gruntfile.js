@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         },
         files: {
           'dist/default.htm': 'dist/default.htm',
-          'dist/partials/start-layout.htm': 'src/partials/start-layout.htm'
+          'dist/partials/start.partial.htm': 'src/partials/start.partial.htm'
         }
       },
       dev: {
@@ -192,5 +192,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', ['uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
   grunt.registerTask('dist', ['uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
-  grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean'])
+  grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean']);
 };
