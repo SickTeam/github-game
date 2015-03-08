@@ -40,7 +40,7 @@
       };    
     }])
 
-    .directive('ownerExists', ['$resource', '$timeout', 'ghUrl', function ($resource, $timeout, ghUrl) {
+    .directive('ownerExists', ['$resource', '$timeout', 'UserRepos', 'OrgRepos', 'ghUrl', function ($resource, $timeout, UserRepos, OrgRepos, ghUrl) {
       return {
         restrict: 'A',
         require: 'ngModel',
@@ -60,8 +60,19 @@
             });
    
             stop_timeout = $timeout(function () {
-               Model.query(null, function(models) {
-                  console.log(models);
+               Model.query(null, function (models) {
+                  if (scope.isOrg)
+                    OrgRepos.query({ org: name }, function (repos) {
+                      scope.repos = repos.map(function (val) {
+                        return val.name;
+                      });
+                    });
+                  else
+                    UserRepos.query({ user: name }, function (repos) {
+                      scope.repos = repos.map(function (val) {
+                        return val.name;
+                      });
+                    });
                   return ngModel.$setValidity('exists', true);
                });
             }, 500);

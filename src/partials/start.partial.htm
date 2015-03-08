@@ -8,12 +8,12 @@
         <div class="form-group">
           <div class="col-sm-6">
             <div class="input-group"
-              ng-class="{'has-error': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success': gameForm.ownerName.$dirty && gameForm.ownerName.$valid }">
+              ng-class="{'has-warning': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid}">
               <span class="input-group-addon">
                 <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
               </span>
               <input name="ownerName" type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name"
-                ng-model="ownerName" owner-exists ng-change="gameForm.ownerName.$setValidity('exists', false)" required>
+                ng-model="ownerName" owner-exists ng-change="gameForm.ownerName.$setValidity('exists', false);repos=[];repoName=''" required>
               <span class="input-group-addon">
                 <input type="checkbox" ng-model="isOrg">
               </span>
@@ -25,14 +25,13 @@
                 <span class="glyphicon glyphicon-folder-open"></span>
               </span>
               <input name="repoName" type="text" placeholder="Enter repo name" class="form-control"
-                ng-disabled="!gameForm.ownerName.$valid " ng-model="repoName" required>
+              ng-disabled="!gameForm.ownerName.$valid || !repos" ng-model="repoName" typeahead="repo for repo in repos | filter:$viewValue | limitTo:5" typeahead-on-select="pickRepo($item, $model, $label)" required>
             </div>
           </div>
         </div>
       </form>
       <div class="form-group">
         <div class="col-sm-9 col-xs-9">
-          <button type="button" class="btn btn-info" ng-click="check(ownerName, repoName)" ng-disabled="!gameForm.$valid">Check</button>
           <span class="text-primary">{{contributors ? contributors + ' contributor(s).' : ''}}</span>
           <span class="text-success">{{commits ? commits + ' commit(s).' : ''}}</span>
         </div>

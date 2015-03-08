@@ -28,7 +28,10 @@ module.exports = function(grunt) {
         customattrs: [
           'key-enter',
           'key-escape',
-          'click-focus'
+          'click-focus',
+          'owner-exists',
+          'typeahead',
+          'typeahead-on-select'
         ]
       },
       files: {
