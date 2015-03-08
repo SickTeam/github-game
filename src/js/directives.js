@@ -38,6 +38,36 @@
             });
           }, true);
       };    
+    }])
+
+    .directive('ownerExists', ['$resource', '$timeout', 'ghUrl', function ($resource, $timeout, ghUrl) {
+      return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attrs, ngModel) {
+          var stop_timeout;
+          return scope.$watch(function() {
+            return ngModel.$modelValue;
+          }, function (name) {
+            $timeout.cancel(stop_timeout);
+     
+            if (!name)
+              return;
+     
+            var path = scope.isOrg ? '/orgs/' : '/users/';
+            var Model = $resource(ghUrl + path + name, null, {
+              query: { isArray: false }
+            });
+   
+            stop_timeout = $timeout(function () {
+               Model.query(null, function(models) {
+                  console.log(models);
+                  return ngModel.$setValidity('exists', true);
+               });
+            }, 500);
+          });
+        }
+      };
     }]);
 
 })();

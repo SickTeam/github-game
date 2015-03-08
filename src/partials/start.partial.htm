@@ -7,12 +7,13 @@
       <form name="gameForm" role="form" class="form-horizontal" novalidate>
         <div class="form-group">
           <div class="col-sm-6">
-            <div class="input-group">
+            <div class="input-group"
+              ng-class="{'has-error': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success': gameForm.ownerName.$dirty && gameForm.ownerName.$valid }">
               <span class="input-group-addon">
                 <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
               </span>
               <input name="ownerName" type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name"
-                ng-model="ownerName" required>
+                ng-model="ownerName" owner-exists ng-change="gameForm.ownerName.$setValidity('exists', false)" required>
               <span class="input-group-addon">
                 <input type="checkbox" ng-model="isOrg">
               </span>
