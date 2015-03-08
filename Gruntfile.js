@@ -26,9 +26,9 @@ module.exports = function(grunt) {
           'alert'
         ],
         customattrs: [
-          'keyEnter',
-          'keyEscpae',
-          'clickFocus'
+          'key-enter',
+          'key-escape',
+          'click-focus'
         ]
       },
       files: {
