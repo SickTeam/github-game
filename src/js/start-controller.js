@@ -1,9 +1,9 @@
 (function() {
   angular.module('githubgame')
 
-    .controller('StartController', ['$scope', '$rootScope', 'Repo', function ($scope, $rootScope, Repo) {
+    .controller('StartController', ['$scope', '$rootScope', 'Repos', 'Commits', function ($scope, $rootScope, Repos, Commits) {
       $scope.check = function (ownerName, repoName) {
-        Repo.query({ owner: ownerName, repo: repoName },
+        Repos.query({ owner: ownerName, repo: repoName },
           function (r, headers) {
             var totalCommits = 0;
             $scope.contributors = r.length;
@@ -17,6 +17,11 @@
           function (headers) {
             $rootScope.addAlert('Owner and/or repo not found', 'danger');
             $scope.checked = false;
+          });
+
+        Commits.query({ owner: ownerName, repo: repoName},
+          function (r, headers) {
+            console.log(r);
           });
       };
     }]);
