@@ -155,7 +155,6 @@ module.exports = function(grunt) {
             index: 'default.htm'
           }
         },
-        keepalive: true,
         middleware: function (connect) {
           return [
             modRewrite (['!\\.htm|\\.js|\\.svg|\\.css|\\.png|\\.jpg$ /default.htm [L]']),
@@ -168,6 +167,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.config('watch', {
+    options: {
+      livereload: true
+    },
     gruntfile: {
       files: 'Gruntfile.js',
       tasks: ['jshint:gruntfile'],
@@ -177,11 +179,11 @@ module.exports = function(grunt) {
     },
     js: {
       files: 'src/js/*.js',
-      tasks: ['jshint', 'uglify:dev'],
+      tasks: ['jshint', 'uglify:dev']
     },
     css: {
       files: 'src/css/*.css',
-      tasks: ['csslint', 'cssmin:dev'],
+      tasks: ['csslint', 'cssmin:dev']
     },
     html: {
       files: ['src/default.htm', 'src/start.partial.htm'],
@@ -192,4 +194,5 @@ module.exports = function(grunt) {
   grunt.registerTask('dev', ['uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
   grunt.registerTask('dist', ['uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
   grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean']);
+  grunt.registerTask('serve', ['connect', 'watch']);
 };
