@@ -9,14 +9,13 @@
           <div class="col-sm-6">
             <div class="input-group"
               ng-class="{'has-warning': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid}">
-              <span class="input-group-addon">
-                <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
+              <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="isOrg ? isOrg=false : isOrg=true">
+                  <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
+                </button>
               </span>
               <input name="ownerName" type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name"
                 ng-model="ownerName" owner-exists ng-change="gameForm.ownerName.$setValidity('exists', false);repos=[];repoName=''" required>
-              <span class="input-group-addon">
-                <input type="checkbox" ng-model="isOrg">
-              </span>
             </div>
           </div>
           <div class="col-sm-6">
