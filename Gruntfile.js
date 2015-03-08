@@ -88,33 +88,37 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.config('copy', {
     dist: {
-      options: {
-        flatten: true
-      },
-      files: {
-        'dist/external/angular.min.js': 'bower_components/angular/angular.min.js',
-        'dist/external/ui-bootstrap-tpls.min.js': 'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'dist/external/angular-cookies.min.js': 'bower_components/angular-cookies/angular-cookies.min.js',
-        'dist/external/angular-resource.min.js': 'bower_components/angular-resource/angular-resource.min.js',
-        'dist/external/angular-route.min.js': 'bower_components/angular-route/angular-route.min.js',
-        'dist/external/angular-sanitize.min.js': 'bower_components/angular-sanitize/angular-sanitize.min.js',
-        'dist/favicon.ico': 'src/favicon.ico'
-      }
+      files: [
+        { expand: true, flatten: true, cwd: 'bower_components/', src: [
+          'angular/angular.min.js',
+          'angular-bootstrap/ui-bootstrap-tpls.min.js',
+          'angular-cookies/angular-cookies.min.js',
+          'bower_components/angular-resource/angular-resource.min.js',
+          'angular-route/angular-route.min.js',
+          'angular-sanitize/angular-sanitize.min.js'
+          ],
+          dest: 'dist/external'
+        },
+        { src: 'src/favicon.ico', dest: 'dist/favicon.ico' },
+        { expand: true, flatten: true, src: 'src/assets/*', dest: 'dist/assets' }
+      ]
     },
     dev: {
-      options: {
-        flatten: true
-      },
-      files: {
-        'dev/external/angular.min.js': 'bower_components/angular/angular.min.js',
-        'dev/external/ui-bootstrap-tpls.min.js': 'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'dev/external/angular-cookies.min.js': 'bower_components/angular-cookies/angular-cookies.min.js',
-        'dev/external/angular-resource.min.js': 'bower_components/angular-resource/angular-resource.min.js',
-        'dev/external/angular-route.min.js': 'bower_components/angular-route/angular-route.min.js',
-        'dev/external/angular-sanitize.min.js': 'bower_components/angular-sanitize/angular-sanitize.min.js',
-        'dev/favicon.ico': 'src/favicon.ico'
-      }
-    }
+      files: [
+        { expand: true, flatten: true, cwd: 'bower_components/', src: [
+          'angular/angular.min.js',
+          'angular-bootstrap/ui-bootstrap-tpls.min.js',
+          'angular-cookies/angular-cookies.min.js',
+          'bower_components/angular-resource/angular-resource.min.js',
+          'angular-route/angular-route.min.js',
+          'angular-sanitize/angular-sanitize.min.js'
+          ],
+          dest: 'dev/external'
+        },
+        { src: 'src/favicon.ico', dest: 'dev/favicon.ico' },
+        { expand: true, flatten: true, src: 'src/assets/*', dest: 'dev/assets' }
+      ]
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -181,7 +185,7 @@ module.exports = function(grunt) {
     },
     html: {
       files: ['src/default.htm', 'src/start.partial.htm'],
-      tasks: ['htmlangular', 'clean', 'processhtml:dev', 'htmlmin:dev']
+      tasks: ['processhtml:dev', 'htmlmin:dev']
     }
   });
 
