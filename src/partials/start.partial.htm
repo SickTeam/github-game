@@ -36,7 +36,7 @@
           <span class="text-success">{{commits ? commits + ' commit(s).' : ''}}</span>
         </div>
         <div class="col-sm-3 col-xs-3">
-          <button type="submit" class="btn btn-primary pull-right" ng-disabled="!gameForm.$valid && !checked">
+          <button type="submit" class="btn btn-primary pull-right" ng-disabled="!gameForm.$valid || !checked">
             <span class="glyphicon glyphicon-plus"></span>
             <span class="btn-text">Start Game</span>
           </button>
