@@ -4,65 +4,37 @@
       <div class="panel-title"><span class="glyphicon glyphicon-tower"></span> Start new game</div>
     </div>
     <div class="panel-body">
-      <form name="cloneUrlForm" role="form" class="form-horizontal" novalidate>
+      <form name="gameForm" role="form" class="form-horizontal" novalidate>
         <div class="form-group">
-          <div class="col-sm-12 col-xs-12" ng-init="repoSource = 'names'">
-            <div class="input-group pull-left">
-              <label>
-                <input type="radio" value="names" ng-model="repoSource">
-                From owner and name
-              </label>
-            </div>
-            <div class="input-group pull-left">
-              <label>
-                <input type="radio" value="cloneURL" ng-model="repoSource">
-                From Clone URL
-              </label>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
+              </span>
+              <input type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name" ng-model="ownerName" required>
+              <span class="input-group-addon">
+                <input type="checkbox" ng-model="isOrg">
+              </span>
             </div>
           </div>
-        </div>
-        <div ng-switch on="repoSource">
-          <div class="form-group" ng-switch-when="names">
-            <div class="col-sm-6">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
-                </span>
-                <input type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name" ng-model="ownerName">
-                <span class="input-group-addon">
-                  <input type="checkbox" ng-model="isOrg">
-                </span>
-              </div>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-folder-open"></span>
+              </span>
+              <input type="text" placeholder="Enter repo name" class="form-control" ng-disabled="!ownerName" ng-model="repoName" required>
             </div>
-            <div class="col-sm-6">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-folder-open"></span>
-                </span>
-                <input type="text" placeholder="Enter repo name" class="form-control" ng-disabled="!ownerName" ng-model="repoName">
-              </div>
-            </div>
-          </div>
-          <div class="form-group" ng-switch-when="cloneURL">
-            <div class="col-sm-12 col-xs-12">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-link"></span>
-                </span>
-                <input type="text" placeholder="Enter GitHub clone URL" class="form-control" ng-model="cloneURL">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12 col-xs-12">
-            <button type="submit" class="btn btn-primary pull-right">
-              <span class="glyphicon glyphicon-plus"></span>
-              <span class="btn-text">Start Game</span>
-            </button>
           </div>
         </div>
       </form>
+      <div class="form-group">
+        <div class="col-sm-12 col-xs-12">
+          <button type="submit" class="btn btn-primary pull-right" ng-disabled="!gameForm.$valid">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span class="btn-text">Start Game</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
