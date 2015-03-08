@@ -191,7 +191,7 @@ module.exports = function(grunt) {
       tasks: ['csslint', 'cssmin:dev']
     },
     html: {
-      files: ['src/default.htm', 'src/start.partial.htm'],
+      files: ['src/default.htm', 'src/partials/start.partial.htm'],
       tasks: ['processhtml:dev', 'htmlmin:dev']
     }
   });
