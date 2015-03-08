@@ -13,11 +13,13 @@
               $rootScope.addAlert('Authorized as: <strong>' + data.login + '</strong>', 'success');
               $rootScope.token = token;
               $cookies.token = token;
+              $http.defaults.headers.common.Authorization = 'token ' + token;
             })
             .error(function (data, status, headers, config) {
               $rootScope.addAlert('Could not authorize token: <strong>' + token + '</strong>');
               $rootScope.token = '';
               $cookies.token = '';
+              $http.defaults.headers.common.Authorization = undefined;
             });
       };
     }]);

@@ -30,8 +30,13 @@
         </div>
       </form>
       <div class="form-group">
-        <div class="col-sm-12 col-xs-12">
-          <button type="submit" class="btn btn-primary pull-right" ng-disabled="!gameForm.$valid">
+        <div class="col-sm-9 col-xs-9">
+          <button type="button" class="btn btn-info" ng-click="check(ownerName, repoName)" ng-disabled="!gameForm.$valid">Check</button>
+          <span class="text-primary">{{contributors ? contributors + ' contributor(s).' : ''}}</span>
+          <span class="text-success">{{commits ? commits + ' commit(s).' : ''}}</span>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <button type="submit" class="btn btn-primary pull-right" ng-disabled="!gameForm.$valid && !checked">
             <span class="glyphicon glyphicon-plus"></span>
             <span class="btn-text">Start Game</span>
           </button>
