@@ -3,6 +3,8 @@
 
     .controller('TokenController', ['$scope', '$rootScope', '$cookies', '$http', function ($scope, $rootScope, $cookies, $http) {
       $scope.token = $cookies.token;
+      if ($scope.token)
+        $http.defaults.headers.common.Authorization = 'token ' + $scope.token;
 
       $scope.saveToken = function (token) {
         $scope.editingToken = false;
