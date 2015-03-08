@@ -83,6 +83,9 @@ module.exports = function(grunt) {
       }
     },
     dev: {
+      options: {
+        beautify: true
+      },
       files: {
         'dev/app.min.js': 'src/js/**.js'
       }
@@ -110,12 +113,12 @@ module.exports = function(grunt) {
     dev: {
       files: [
         { expand: true, flatten: true, cwd: 'bower_components/', src: [
-          'angular/angular.min.js',
-          'angular-bootstrap/ui-bootstrap-tpls.min.js',
-          'angular-cookies/angular-cookies.min.js',
-          'angular-resource/angular-resource.min.js',
-          'angular-route/angular-route.min.js',
-          'angular-sanitize/angular-sanitize.min.js'
+          'angular/angular.js',
+          'angular-bootstrap/ui-bootstrap-tpls.js',
+          'angular-cookies/angular-cookies.js',
+          'angular-resource/angular-resource.js',
+          'angular-route/angular-route.js',
+          'angular-sanitize/angular-sanitize.js'
           ],
           dest: 'dev/external'
         },
@@ -141,7 +144,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.config('clean', {
-    all: ["html-angular-validate-report.json"]
+    all: ['html-angular-validate-report.json']
   });
 
   
