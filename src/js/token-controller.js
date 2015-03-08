@@ -2,7 +2,6 @@
   angular.module('githubgame')
 
     .controller('TokenController', ['$scope', '$rootScope', '$cookies', '$http', function ($scope, $rootScope, $cookies, $http) {
-      $cookies.tokenValid = undefined;
       $scope.token = $cookies.token;
 
       $scope.saveToken = function (token) {
