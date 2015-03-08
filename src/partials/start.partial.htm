@@ -11,7 +11,8 @@
               <span class="input-group-addon">
                 <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
               </span>
-              <input type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name" ng-model="ownerName" required>
+              <input name="ownerName" type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name"
+                ng-model="ownerName" required>
               <span class="input-group-addon">
                 <input type="checkbox" ng-model="isOrg">
               </span>
@@ -22,7 +23,8 @@
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-folder-open"></span>
               </span>
-              <input type="text" placeholder="Enter repo name" class="form-control" ng-disabled="!ownerName" ng-model="repoName" required>
+              <input name="repoName" type="text" placeholder="Enter repo name" class="form-control"
+                ng-disabled="!gameForm.ownerName.$valid " ng-model="repoName" required>
             </div>
           </div>
         </div>
