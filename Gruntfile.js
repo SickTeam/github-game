@@ -23,9 +23,13 @@ module.exports = function(grunt) {
       options: {
         tmplext: 'partial.htm',
         customtags: [
-            'alert'
+          'alert'
         ],
-        customattrs: []
+        customattrs: [
+          'keyEnter',
+          'keyEscpae',
+          'clickFocus'
+        ]
       },
       files: {
         src: ['src/default.htm', 'src/partials/*.partial.htm']
@@ -148,6 +152,7 @@ module.exports = function(grunt) {
     server: {
       options: {
         port: 8181,
+        livereload: 35729,
         hostname: 'localhost',
         base: {
           path: 'dev',
