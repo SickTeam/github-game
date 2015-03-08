@@ -97,7 +97,7 @@ module.exports = function(grunt) {
           'angular/angular.min.js',
           'angular-bootstrap/ui-bootstrap-tpls.min.js',
           'angular-cookies/angular-cookies.min.js',
-          'bower_components/angular-resource/angular-resource.min.js',
+          'angular-resource/angular-resource.min.js',
           'angular-route/angular-route.min.js',
           'angular-sanitize/angular-sanitize.min.js'
           ],
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
           'angular/angular.min.js',
           'angular-bootstrap/ui-bootstrap-tpls.min.js',
           'angular-cookies/angular-cookies.min.js',
-          'bower_components/angular-resource/angular-resource.min.js',
+          'angular-resource/angular-resource.min.js',
           'angular-route/angular-route.min.js',
           'angular-sanitize/angular-sanitize.min.js'
           ],
