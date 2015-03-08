@@ -38,11 +38,14 @@
         GitHub Game
       </a>
     </div>
-    <div class="collapse navbar-collapse navbar-right">
-      <button type="button" class="btn btn-default navbar-btn">
+    <div class="collapse navbar-collapse navbar-right" ng-controller="TokenController">
+      <button type="button" class="btn btn-default navbar-btn" ng-click="editingToken = true" ng-show="!editingToken">
         <img src="assets/githublogo.png" width="20" height="20" alt="GitHub Logo">
-        GitHub Access Token
+        GitHub Access Token {{verified ? 'X' : ''}}
       </button>
+      <form class="navbar-form navbar-left" ng-show="editingToken">
+        <input type="text" class="form-control" placeholder="GitHub Access Token" ng-model="token" key-enter="saveToken(token)" key-escape="editingToken = false" click-focus="editingToken">
+      </form>
     </div>
   </div>
 </nav>
@@ -50,7 +53,7 @@
 <div class="container-fluid">
   <div class="row" ng-controller="AlertCtrl">
     <div class="col-sm-8 col-sm-offset-2">
-      <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+      <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="alert.msg"></div></alert>
     </div>
   </div>
   <div id="container" class="row" ng-view>
