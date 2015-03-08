@@ -4,7 +4,9 @@
 		.controller('AlertCtrl', ['$rootScope', function ($rootScope) {
 			$rootScope.alerts = [];
 
-			$rootScope.addAlert = function (message, alertType) {
+			$rootScope.addAlert = function (message, alertType, clearOld) {
+				if (clearOld)
+					$rootScope.alerts.splice(0, $rootScope.alerts.length);
     		$rootScope.alerts.push({type: alertType, msg: message});
   		};
 			$rootScope.closeAlert = function (index) {
