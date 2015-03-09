@@ -149,7 +149,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.config('clean', {
-    all: ['html-angular-validate-report.json']
+    all: ['html-angular-validate-report.json'],
+    dist: ['dist/'],
+    dev: ['dev/']
   });
 
   
@@ -204,8 +206,8 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('dev', ['uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
-  grunt.registerTask('dist', ['uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
+  grunt.registerTask('dev', ['clean:dev', 'uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
+  grunt.registerTask('dist', ['clean:dist', 'uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
   grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean']);
   grunt.registerTask('serve', ['connect', 'watch']);
 };
