@@ -3,7 +3,7 @@
 
     .constant('ghUrl', 'https://api.github.com')
 
-    .factory('Repos', ['$resource', 'ghUrl', function ($resource, ghUrl) {
+    .factory('Contributors', ['$resource', 'ghUrl', function ($resource, ghUrl) {
       return $resource(ghUrl + '/repos/:owner/:repo/contributors');
     }])
 

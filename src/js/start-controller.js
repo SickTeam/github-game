@@ -1,9 +1,9 @@
 (function() {
   angular.module('githubgame')
 
-    .controller('StartController', ['$scope', '$rootScope', '$http', 'Repos', 'Commits', function ($scope, $rootScope, $http, Repos, Commits) {
+    .controller('StartController', ['$scope', '$rootScope', '$http', 'Contributors', 'Commits', function ($scope, $rootScope, $http, Contributors, Commits) {
       $scope.pickRepo = function (item, model, label) {
-        Repos.query({ owner: $scope.ownerName, repo: item },
+        Contributors.query({ owner: $scope.ownerName, repo: item },
           function (r, headers) {
             var totalCommits = 0;
             $scope.contributors = r.length;
