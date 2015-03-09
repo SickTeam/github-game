@@ -64,7 +64,7 @@ module.exports = function(grunt) {
       files: {
         'dist/default.htm': 'dist/default.htm',
         'dist/partials/start.partial.htm': 'src/partials/start.partial.htm',
-        'dev/partials/game.partial.htm': 'src/partials/game.partial.htm'
+        'dist/partials/game.partial.htm': 'src/partials/game.partial.htm'
       }
     },
     dev: {
