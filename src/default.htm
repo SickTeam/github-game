@@ -51,7 +51,7 @@
         GitHub Access Token {{verified ? 'X' : ''}}
       </button>
       <form class="navbar-form navbar-left" ng-show="editingToken">
-        <input type="text" class="form-control" placeholder="GitHub Access Token" ng-model="token" key-enter="saveToken(token)" key-escape="editingToken = false" click-focus="editingToken">
+        <input type="text" class="form-control" placeholder="GitHub Access Token" ng-model="token" key-enter="saveToken(token)" key-escape="editingToken = false" click-focus="editingToken" ng-blur="saveToken(token)">
       </form>
     </div>
   </div>
