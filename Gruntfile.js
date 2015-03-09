@@ -63,7 +63,8 @@ module.exports = function(grunt) {
       },
       files: {
         'dist/default.htm': 'dist/default.htm',
-        'dist/partials/start.partial.htm': 'src/partials/start.partial.htm'
+        'dist/partials/start.partial.htm': 'src/partials/start.partial.htm',
+        'dev/partials/game.partial.htm': 'src/partials/game.partial.htm'
       }
     },
     dev: {
@@ -73,7 +74,8 @@ module.exports = function(grunt) {
       },
       files: {
         'dev/default.htm': 'dev/default.htm',
-        'dev/partials/start.partial.htm': 'src/partials/start.partial.htm'
+        'dev/partials/start.partial.htm': 'src/partials/start.partial.htm',
+        'dev/partials/game.partial.htm': 'src/partials/game.partial.htm'
       }
     }
   });
@@ -197,7 +199,7 @@ module.exports = function(grunt) {
       tasks: ['csslint', 'cssmin:dev']
     },
     html: {
-      files: ['src/default.htm', 'src/partials/start.partial.htm'],
+      files: ['src/default.htm', 'src/partials/start.partial.htm', 'src/partials/game.partial.htm'],
       tasks: ['processhtml:dev', 'htmlmin:dev']
     }
   });

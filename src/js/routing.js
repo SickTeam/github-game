@@ -9,6 +9,10 @@
           templateUrl: 'partials/start.partial.htm',
           controller: 'StartController'
         })
+        .when('/game', {
+          templateUrl: 'partials/game.partial.htm',
+          controller: 'GameController'
+        })
         .otherwise({
           templateUrl: 'partials/start.partial.htm',
           controller: 'StartController'

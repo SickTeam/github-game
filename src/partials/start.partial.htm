@@ -4,7 +4,7 @@
       <div class="panel-title"><span class="glyphicon glyphicon-tower"></span> Start new game</div>
     </div>
     <div class="panel-body">
-      <form name="gameForm" role="form" class="form-horizontal" novalidate>
+      <form name="gameForm" role="form" class="form-horizontal" ng-submit="gameForm.$valid && startGame(ownerName, repoName, contributors)" novalidate>
         <fieldset>
           <legend>Find repo</legend>
           <div class="form-group">
