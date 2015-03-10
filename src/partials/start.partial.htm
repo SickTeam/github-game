@@ -31,7 +31,7 @@
           </div>
         </fieldset>
         <div class="form-group" ng-show="contributors">
-          <div class="col-sm-12 col-xs-12">
+          <div class="col-sm-12">
             <fieldset>
               <legend>Contributors</legend>
               <div class="checkbox" ng-repeat="c in contributors | orderBy:'login'">
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-sm-12 col-xs-12">
+          <div class="col-sm-12">
             <button type="submit" class="btn btn-primary pull-right" ng-show="gameForm.$valid">
               <span class="glyphicon glyphicon-arrow-right"></span>
               <span class="btn-text">Start Game</span>
