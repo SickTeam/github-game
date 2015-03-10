@@ -20,12 +20,13 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="input-group">
+              <div class="input-group" ng-class="{'has-warning': gameForm.repoName.$dirty && gameForm.repoName.$invalid, 'has-success has-feedback': gameForm.repoName.$valid}">
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-folder-open"></span>
                 </span>
                 <input name="repoName" type="text" placeholder="Enter repo name" class="form-control"
-                ng-disabled="!gameForm.ownerName.$valid || !repos" ng-model="repoName" typeahead="repo for repo in repos | filter:$viewValue | limitTo:5" typeahead-on-select="pickRepo($item, $model, $label)" required>
+                ng-disabled="!gameForm.ownerName.$valid || !repos" ng-model="repoName" ng-change="contributors=[]" typeahead="repo for repo in repos | filter:$viewValue | orderBy:repo | limitTo:5" typeahead-on-select="pickRepo($item, $model, $label)" typeahead-editable="false" required>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="gameForm.repoName.$valid"></span>
               </div>
             </div>
           </div>
