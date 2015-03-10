@@ -4,7 +4,14 @@
       <div class="panel-title"><span class="glyphicon glyphicon-tower"></span> Game</div>
     </div>
     <div class="panel-body">
-      {{params | json}}
+      <h4>Here's a commit:</h4>
+      <pre>hey I made a lot of changes (<span class="text-success">+4122</span> <span class="text-danger">-64</span>)</pre>
+      <h4>Guess who:</h4>
+      <div class="form-group">
+        <button type="button" class="btn btn-default">#1 mikaelec</button>
+        <button type="button" class="btn btn-default">#2 deaddog</button>
+      </div>
+      {{ commits | json }}
     </div>
   </div>
 </div>
