@@ -1,7 +1,14 @@
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <div class="panel-title"><span class="glyphicon glyphicon-tower"></span> Game</div>
+      <div class="panel-title">
+        <span class="glyphicon glyphicon-tower"></span> Game
+        <span class="pull-right">
+          <span class="label label-success">{{stats.correct}}</span>
+          <span class="label label-danger">{{stats.incorrect}}</span>
+          <span class="label label-default">{{stats.total}}</span>
+        </span>
+        </div>
     </div>
     <div class="panel-body">
       <div ng-show="commit">

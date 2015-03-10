@@ -6,12 +6,7 @@
       $scope.contributors = $scope.contributors.map(function (x) {
         return { login: x, trueNeg: false, truePos: false, falsePos: false };
       });
-      Commits.query( { owner: $routeParams.owner, repo: $routeParams.repo }, function (data, headers) {
-        $scope.commits = data.map(function (x) {
-          return x.sha;
-        });
-        $scope.$broadcast('commit-get', $scope.commits.pop());
-      });
+      $scope.stats = { correct: 0, incorrect: 0, total: 0};
 
       $scope.$on('commit-get', function (event, sha) {
         Commits.get( { owner: $routeParams.owner, repo: $routeParams.repo, sha: sha}, function (data, headers) {
@@ -28,10 +23,14 @@
       });
 
       $scope.makeGuess = function (con) {
+        $scope.stats.total++;
         $scope.guessed = true;
-        if (con.login == $scope.commit.committer)
+        if (con.login == $scope.commit.committer) {
+          $scope.stats.correct++;
           con.truePos = true;
+        }
         else {
+          $scope.stats.incorrect++;
           con.falsePos = true;
           $scope.contributors.forEach(function (x) {
             if (x.login == $scope.commit.committer)
@@ -43,6 +42,14 @@
       $scope.nextCommit = function () {
         $scope.$broadcast('commit-get', $scope.commits.pop());
       };
+
+      Commits.query( { owner: $routeParams.owner, repo: $routeParams.repo }, function (data, headers) {
+        $scope.commits = data.map(function (x) {
+          return x.sha;
+        });
+        $scope.$broadcast('commit-get', $scope.commits.pop());
+      });
+
     }]);
 
 })();
