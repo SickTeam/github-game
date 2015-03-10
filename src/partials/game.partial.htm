@@ -6,13 +6,17 @@
     <div class="panel-body">
       <div ng-show="commit">
         <h4>Here's a commit:</h4>
-        <pre>{{commit.commit.message}} <span class="pull-right"><span class="text-success">+{{commit.stats.additions}}</span> <span class="text-danger">-{{commit.stats.deletions}}</span></span></pre>
+        <pre>{{commit.message}} <span class="pull-right"><br><span class="text-success">+{{commit.additions}}</span> <span class="text-danger">-{{commit.deletions}}</span></span></pre>
         <h4>Guess who:</h4>
-        <div class="form-group">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default" ng-repeat="con in contributors" ng-click="makeGuess(con)" ng-class="{'btn-success': con.truePos, 'btn-info:': con.trueNeg}">
-              #{{$index+1}} {{con.login}}
+        <div class="container-fluid">
+          <div class="row" ng-repeat="con in contributors">
+            <button type="button" class="btn btn-default" ng-click="!guessed && makeGuess(con)" ng-class="{'btn-success': con.truePos, 'btn-info': con.trueNeg, 'btn-danger': con.falsePos}">
+              #{{$index+1}}
             </button>
+            <strong>{{con.login}}</strong>
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-default pull-right" ng-show="guessed" ng-click="nextCommit()">Next commit</button>
           </div>
         </div>
       </div>

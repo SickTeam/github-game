@@ -6,7 +6,6 @@
       $scope.contributors = $scope.contributors.map(function (x) {
         return { login: x, trueNeg: false, truePos: false, falsePos: false };
       });
-      console.log($scope.contributors);
       Commits.query( { owner: $routeParams.owner, repo: $routeParams.repo }, function (data, headers) {
         $scope.commits = data.map(function (x) {
           return x.sha;
@@ -16,13 +15,33 @@
 
       $scope.$on('commit-get', function (event, sha) {
         Commits.get( { owner: $routeParams.owner, repo: $routeParams.repo, sha: sha}, function (data, headers) {
-          $scope.commit = data;
+          $scope.$broadcast('commit-retrieved', { message: data.commit.message, committer: data.author.login, additions: data.stats.additions, deletions: data.stats.deletions });
         });
-        $scope.committer = $scope.contributors[0];
+      });
+
+      $scope.$on('commit-retrieved', function (event, commit) {
+        $scope.commit = commit;
+        $scope.guessed = false;
+        $scope.contributors.forEach(function (x) {
+          x.trueNeg = x.truePos = x.falsePos = false;
+        });
       });
 
       $scope.makeGuess = function (con) {
-        
+        $scope.guessed = true;
+        if (con.login == $scope.commit.committer)
+          con.truePos = true;
+        else {
+          con.falsePos = true;
+          $scope.contributors.forEach(function (x) {
+            if (x.login == $scope.commit.committer)
+              x.trueNeg = true;
+          });
+        }
+      };
+
+      $scope.nextCommit = function () {
+        $scope.$broadcast('commit-get', $scope.commits.pop());
       };
     }]);
 
