@@ -47,6 +47,10 @@
         $scope.commits = data.map(function (x) {
           return x.sha;
         });
+        (function (arr) {
+          for (var j, x, i = arr.length; i; j = Math.floor(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
+          return arr;
+        })($scope.commits);
         $scope.$broadcast('commit-get', $scope.commits.pop());
       });
 
