@@ -60,21 +60,23 @@
             });
    
             stop_timeout = $timeout(function () {
-               Model.query(null, function (models) {
-                  if (scope.isOrg)
-                    OrgRepos.query({ org: name }, function (repos) {
-                      scope.repos = repos.map(function (val) {
-                        return val.name;
-                      });
+              scope.checkingOwner = true;
+              Model.query(null, function (models) {
+                if (scope.isOrg)
+                  OrgRepos.query({ org: name }, function (repos) {
+                    scope.repos = repos.map(function (val) {
+                      return val.name;
                     });
-                  else
-                    UserRepos.query({ user: name }, function (repos) {
-                      scope.repos = repos.map(function (val) {
-                        return val.name;
-                      });
+                  });
+                else
+                  UserRepos.query({ user: name }, function (repos) {
+                    scope.repos = repos.map(function (val) {
+                      return val.name;
                     });
-                  return ngModel.$setValidity('exists', true);
-               });
+                  });
+                scope.checkingOwner = false;
+                return ngModel.$setValidity('exists', true);
+              }, function () { scope.checkingOwner = false; });
             }, 500);
           });
         }

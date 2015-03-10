@@ -10,12 +10,12 @@
           <div class="form-group">
             <div class="col-sm-6">
               <div class="input-group"
-                ng-class="{'has-error': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success has-feedback': gameForm.ownerName.$valid}">
+                ng-class="{'has-warning': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success has-feedback': gameForm.ownerName.$valid}">
                 <span class="input-group-addon clickable" ng-click="isOrg ? isOrg=false : isOrg=true">
-                  <span class="glyphicon" ng-class="{'glyphicon-user': !isOrg, 'glyphicon-briefcase': isOrg}"></span>
+                  <span class="glyphicon" ng-class="{'glyphicon-refresh spinning': checkingOwner, 'glyphicon-user': !checkingOwner && !isOrg, 'glyphicon-briefcase': !checkingOwner && isOrg}"></span>
                 </span>
                 <input name="ownerName" type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name"
-                  ng-model="ownerName" owner-exists ng-change="gameForm.ownerName.$setValidity('exists', false);repos=[];repoName='';contributors=[]" ng-maxlength="20" required>
+                  ng-model="ownerName" owner-exists ng-change="gameForm.ownerName.$setValidity('exists', false);repos=[];repoName='';gameForm.repoName.$setPristine();contributors=[]" ng-maxlength="20" required>
                 <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="gameForm.ownerName.$valid"></span>
               </div>
             </div>
