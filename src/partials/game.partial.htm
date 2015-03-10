@@ -10,8 +10,8 @@
         <h4>Guess who:</h4>
         <div class="form-group">
           <div class="btn-group">
-            <button type="button" class="btn btn-default" ng-repeat="con in contributors" ng-click="makeGuess(con)">
-              #{{$index+1}} {{con}}
+            <button type="button" class="btn btn-default" ng-repeat="con in contributors" ng-click="makeGuess(con)" ng-class="{'btn-success': con.truePos, 'btn-info:': con.trueNeg}">
+              #{{$index+1}} {{con.login}}
             </button>
           </div>
         </div>
