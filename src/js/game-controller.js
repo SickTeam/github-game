@@ -44,13 +44,25 @@
       };
 
       Commits.query( { owner: $routeParams.owner, repo: $routeParams.repo }, function (data, headers) {
-        $scope.commits = data.map(function (x) {
+        var d = data;
+        var isContributor = function (x) {
+          for (var i = 0; i < $scope.contributors.length; i++) {
+            if (x == $scope.contributors[i].login)
+              return true;
+          }
+          return false;
+        };
+        d = d.filter(function (x) {
+          return isContributor(x.author.login);
+        });
+        d = d.map(function (x) {
           return x.sha;
         });
-        (function (arr) {
+        d = (function (arr) {
           for (var j, x, i = arr.length; i; j = Math.floor(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
           return arr;
-        })($scope.commits);
+        })(d);
+        $scope.commits = d;
         $scope.$broadcast('commit-get', $scope.commits.pop());
       });
 
