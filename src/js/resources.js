@@ -8,7 +8,7 @@
     }])
 
     .factory('Commits', ['$resource', 'ghUrl', function ($resource, ghUrl) {
-      return $resource(ghUrl + '/repos/:owner/:repo/commits/:sha', { per_page: 100, page: 0});
+      return $resource(ghUrl + '/repos/:owner/:repo/commits/:sha', { per_page: 100, page: 1});
     }])
 
     .factory('UserRepos', ['$resource', 'ghUrl', function ($resource, ghUrl) {
