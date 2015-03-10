@@ -6,7 +6,7 @@
       $scope.contributors = $scope.contributors.map(function (x) {
         return { login: x, trueNeg: false, truePos: false, falsePos: false };
       });
-      $scope.stats = { correct: 0, incorrect: 0, total: 0};
+      $scope.stats = { correct: 0, incorrect: 0, total: 0, remaining: 0};
 
       $scope.$on('commit-get', function (event, sha) {
         Commits.get( { owner: $routeParams.owner, repo: $routeParams.repo, sha: sha}, function (data, headers) {
@@ -16,6 +16,7 @@
 
       $scope.$on('commit-retrieved', function (event, commit) {
         $scope.commit = commit;
+        $scope.stats.remaining--;
         $scope.guessed = false;
         $scope.contributors.forEach(function (x) {
           x.trueNeg = x.truePos = x.falsePos = false;
@@ -62,6 +63,7 @@
           for (var j, x, i = arr.length; i; j = Math.floor(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
           return arr;
         })(d);
+        $scope.stats.remaining = d.length;
         $scope.commits = d;
         $scope.$broadcast('commit-get', $scope.commits.pop());
       });

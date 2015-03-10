@@ -6,7 +6,8 @@
         <span class="pull-right">
           <span class="label label-success">{{stats.correct}}</span>
           <span class="label label-danger">{{stats.incorrect}}</span>
-          <span class="label label-default">{{stats.total}}</span>
+          <span class="label label-info">{{stats.total}}</span>
+          <span class="label label-default">{{stats.remaining}}</span>
         </span>
         </div>
     </div>
@@ -23,7 +24,7 @@
             <strong>{{con.login}}</strong>
           </div>
           <div class="row">
-            <button type="button" class="btn btn-default pull-right" ng-show="guessed" ng-click="nextCommit()">Next commit</button>
+            <button type="button" class="btn btn-default pull-right" ng-show="guessed && stats.remaining>0" ng-click="nextCommit()">Next commit</button>
           </div>
         </div>
       </div>
