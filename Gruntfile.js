@@ -31,7 +31,8 @@ module.exports = function(grunt) {
           'click-focus',
           'owner-exists',
           'typeahead',
-          'typeahead-on-select'
+          'typeahead-on-select',
+          'typeahead-editable'
         ]
       },
       files: {
