@@ -24,7 +24,7 @@
             <strong>{{con.login}}</strong>
           </div>
           <div class="row">
-            <button type="button" class="btn btn-default pull-right" ng-show="guessed && stats.remaining>0" ng-click="nextCommit()">Next commit</button>
+            <button type="button" class="btn btn-default pull-right" ng-disabled="!ready" ng-show="guessed && stats.remaining>0" ng-click="nextCommit()">Next commit</button>
           </div>
         </div>
       </div>

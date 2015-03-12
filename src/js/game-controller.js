@@ -18,14 +18,16 @@
         $scope.commit = commit;
         $scope.stats.remaining--;
         $scope.guessed = false;
+        $scope.ready = true;
         $scope.contributors.forEach(function (x) {
           x.trueNeg = x.truePos = x.falsePos = false;
         });
       });
 
       $scope.makeGuess = function (con) {
-        $scope.stats.total++;
         $scope.guessed = true;
+        $scope.ready = true;
+        $scope.stats.total++;
         if (con.login == $scope.commit.committer) {
           $scope.stats.correct++;
           con.truePos = true;
@@ -41,6 +43,7 @@
       };
 
       $scope.nextCommit = function () {
+        $scope.ready = false;
         $scope.$broadcast('commit-get', $scope.commits.pop());
       };
 
