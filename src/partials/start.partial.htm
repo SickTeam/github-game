@@ -32,7 +32,7 @@
         </fieldset>
         <div class="form-group" ng-show="gameForm.repoName.$valid">
           <div class="col-sm-12">
-            <fieldset>
+            <fieldset contributors-selected ng-model="contributors">
               <legend>Contributors</legend>
               <div class="checkbox" ng-repeat="c in contributors | orderBy:'login'">
                 <label>
