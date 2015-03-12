@@ -32,7 +32,8 @@ module.exports = function(grunt) {
           'owner-exists',
           'typeahead',
           'typeahead-on-select',
-          'typeahead-editable'
+          'typeahead-editable',
+          'contributors-selected'
         ]
       },
       files: {
