@@ -10,7 +10,7 @@
 
       $scope.$on('commit-get', function (event, sha) {
         Commits.get( { owner: $routeParams.owner, repo: $routeParams.repo, sha: sha}, function (data, headers) {
-          $scope.$broadcast('commit-retrieved', { message: data.commit.message, committer: data.author.login, additions: data.stats.additions, deletions: data.stats.deletions });
+          $scope.$broadcast('commit-retrieved', { sha: sha, message: data.commit.message, committer: data.author.login, additions: data.stats.additions, deletions: data.stats.deletions });
         });
       });
 

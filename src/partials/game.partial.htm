@@ -15,6 +15,7 @@
       <div ng-show="commit">
         <h4>Here's a commit:</h4>
         <pre>{{commit.message}} <span class="pull-right"><br><span class="text-success">+{{commit.additions}}</span> <span class="text-danger">-{{commit.deletions}}</span></span></pre>
+        <div><small><strong>Hash:</strong> {{guessed ? commit.sha : '[Secret]'}}</small></div>
         <h4>Guess who:</h4>
         <div class="container-fluid">
           <div class="row" ng-repeat="con in contributors">
