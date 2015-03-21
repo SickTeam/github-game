@@ -51,7 +51,7 @@ module.exports = function(grunt) {
     },
     dev: {
       files: {
-        'dev/default.htm': ['src/default.htm']
+        'C:/inetpub/wwwroot/ghgame/default.htm': ['src/default.htm']
       }
     }
   });
@@ -75,9 +75,9 @@ module.exports = function(grunt) {
         collapseWhitespace: true
       },
       files: {
-        'dev/default.htm': 'dev/default.htm',
-        'dev/partials/start.partial.htm': 'src/partials/start.partial.htm',
-        'dev/partials/game.partial.htm': 'src/partials/game.partial.htm'
+        'C:/inetpub/wwwroot/ghgame/default.htm': 'C:/inetpub/wwwroot/ghgame/default.htm',
+        'C:/inetpub/wwwroot/ghgame/partials/start.partial.htm': 'src/partials/start.partial.htm',
+        'C:/inetpub/wwwroot/ghgame/partials/game.partial.htm': 'src/partials/game.partial.htm'
       }
     }
   });
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
         beautify: true
       },
       files: {
-        'dev/app.min.js': 'src/js/**.js'
+        'C:/inetpub/wwwroot/ghgame/app.min.js': 'src/js/**.js'
       }
     }
   });
@@ -127,10 +127,10 @@ module.exports = function(grunt) {
           'angular-route/angular-route.js',
           'angular-sanitize/angular-sanitize.js'
           ],
-          dest: 'dev/external'
+          dest: 'C:/inetpub/wwwroot/ghgame/external'
         },
-        { src: 'src/favicon.ico', dest: 'dev/favicon.ico' },
-        { expand: true, flatten: true, src: 'src/assets/*', dest: 'dev/assets' }
+        { src: 'src/favicon.ico', dest: 'C:/inetpub/wwwroot/ghgame/favicon.ico' },
+        { expand: true, flatten: true, src: 'src/assets/*', dest: 'C:/inetpub/wwwroot/ghgame/assets' }
       ]
     },
   });
@@ -144,49 +144,23 @@ module.exports = function(grunt) {
     },
     dev: {
       files: {
-        'dev/style.min.css': 'src/css/*.css'
+        'C:/inetpub/wwwroot/ghgame/style.min.css': 'src/css/*.css'
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.config('clean', {
-    all: ['html-angular-validate-report.json'],
+    check: ['html-angular-validate-report.json'],
     dist: ['dist/'],
-    dev: ['dev/']
-  });
-
-  
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  var modRewrite = require('connect-modrewrite');
-  var mountFolder = function (connect, dir) { return connect.static(require('path').resolve(dir)); };
-  grunt.config('connect', {
-    server: {
-      options: {
-        port: 8181,
-        livereload: 35729,
-        hostname: 'localhost',
-        base: {
-          path: 'dev',
-          options: {
-            index: 'default.htm'
-          }
-        },
-        middleware: function (connect) {
-          return [
-            modRewrite (['!\\.htm|\\.js|\\.svg|\\.css|\\.png|\\.jpg$ /default.htm [L]']),
-            mountFolder(connect, 'dev')
-          ];
-        }
-      }
+    dev: {
+      src: ['C:/inetpub/wwwroot/ghgame/*'],
+      options: { force: true }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.config('watch', {
-    options: {
-      livereload: true
-    },
     gruntfile: {
       files: 'Gruntfile.js',
       tasks: ['jshint:gruntfile'],
@@ -210,6 +184,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', ['clean:dev', 'uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
   grunt.registerTask('dist', ['clean:dist', 'uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
-  grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean:all']);
-  grunt.registerTask('serve', ['connect', 'watch']);
+  grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean:check']);
 };
