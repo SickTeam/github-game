@@ -51,7 +51,9 @@ module.exports = function(grunt) {
     },
     dev: {
       files: {
-        'C:/inetpub/wwwroot/ghgame/default.htm': ['src/default.htm']
+        'C:/inetpub/wwwroot/ghgame/default.htm': ['src/default.htm'],
+        'C:/inetpub/wwwroot/ghgame/partials/start.partial.htm': 'src/partials/start.partial.htm',
+        'C:/inetpub/wwwroot/ghgame/partials/game.partial.htm': 'src/partials/game.partial.htm'
       }
     }
   });
@@ -67,17 +69,6 @@ module.exports = function(grunt) {
         'dist/default.htm': 'dist/default.htm',
         'dist/partials/start.partial.htm': 'src/partials/start.partial.htm',
         'dist/partials/game.partial.htm': 'src/partials/game.partial.htm'
-      }
-    },
-    dev: {
-      options: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      files: {
-        'C:/inetpub/wwwroot/ghgame/default.htm': 'C:/inetpub/wwwroot/ghgame/default.htm',
-        'C:/inetpub/wwwroot/ghgame/partials/start.partial.htm': 'src/partials/start.partial.htm',
-        'C:/inetpub/wwwroot/ghgame/partials/game.partial.htm': 'src/partials/game.partial.htm'
       }
     }
   });
@@ -145,6 +136,9 @@ module.exports = function(grunt) {
     dev: {
       files: {
         'C:/inetpub/wwwroot/ghgame/style.min.css': 'src/css/*.css'
+      },
+      options: {
+        keepBreaks: true
       }
     }
   });
@@ -178,11 +172,11 @@ module.exports = function(grunt) {
     },
     html: {
       files: ['src/default.htm', 'src/partials/start.partial.htm', 'src/partials/game.partial.htm'],
-      tasks: ['processhtml:dev', 'htmlmin:dev']
+      tasks: ['processhtml:dev']
     }
   });
 
-  grunt.registerTask('dev', ['clean:dev', 'uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
+  grunt.registerTask('dev', ['clean:dev', 'uglify:dev', 'copy:dev', 'processhtml:dev', 'cssmin:dev']);
   grunt.registerTask('dist', ['clean:dist', 'uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
   grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean:check']);
 };
