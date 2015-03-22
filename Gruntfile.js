@@ -105,7 +105,8 @@ module.exports = function(grunt) {
           dest: 'dist/external'
         },
         { src: 'src/favicon.ico', dest: 'dist/favicon.ico' },
-        { expand: true, flatten: true, src: 'src/assets/*', dest: 'dist/assets' }
+        { expand: true, flatten: true, src: 'src/assets/*', dest: 'dist/assets' },
+        { src: 'web.config', dest: 'dist/web.config'}
       ]
     },
     dev: {
@@ -121,7 +122,8 @@ module.exports = function(grunt) {
           dest: 'C:/inetpub/wwwroot/ghgame/external'
         },
         { src: 'src/favicon.ico', dest: 'C:/inetpub/wwwroot/ghgame/favicon.ico' },
-        { expand: true, flatten: true, src: 'src/assets/*', dest: 'C:/inetpub/wwwroot/ghgame/assets' }
+        { expand: true, flatten: true, src: 'src/assets/*', dest: 'C:/inetpub/wwwroot/ghgame/assets' },
+        { src: 'web.config', dest: 'C:/inetpub/wwwroot/ghgame/web.config'}
       ]
     },
   });
@@ -176,7 +178,19 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-ftp-deploy');
+  grunt.config('ftp-deploy', {
+    dist: {
+      auth: {
+        host: 'mikaelec.com',
+        port: 21
+      },
+      src: 'dist',
+      dest: '/ghgame'
+    }
+  });
+
   grunt.registerTask('dev', ['clean:dev', 'uglify:dev', 'copy:dev', 'processhtml:dev', 'cssmin:dev']);
-  grunt.registerTask('dist', ['clean:dist', 'uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
+  grunt.registerTask('dist', ['clean:dist', 'uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist', 'ftp-deploy:dist']);
   grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean:check']);
 };
