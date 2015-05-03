@@ -1,5 +1,13 @@
+# modules
 bower_components/
 node_modules/
+
+# development and distribution builds
 dev/
 dist/
+
+# grunt-ftp-deploy login info
 .ftppass
+
+# WebStorm editor meta data
+/.idea
