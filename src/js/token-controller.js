@@ -1,12 +1,12 @@
 (function() {
   angular.module('githubgame')
 
-    .controller('TokenController', ['$scope', '$rootScope', '$cookies', '$http', function ($scope, $rootScope, $cookies, $http) {
+    .controller('TokenController', ['$scope', '$rootScope', '$cookies', '$http', function($scope, $rootScope, $cookies, $http) {
       $scope.token = $cookies.token;
       if ($scope.token)
         $http.defaults.headers.common.Authorization = 'token ' + $scope.token;
 
-      $scope.saveToken = function (token) {
+      $scope.saveToken = function(token) {
         $scope.editingToken = false;
         if (!token) {
           $cookies.token = '';
@@ -14,12 +14,12 @@
         }
         if (token != $cookies.token)
           $http({method: 'GET', url: 'https://api.github.com/user', headers: { 'Authorization': 'token ' + token}})
-            .success(function (data, status, headers, config) {
+            .success(function(data, status, headers, config) {
               $rootScope.token = token;
               $cookies.token = token;
               $http.defaults.headers.common.Authorization = 'token ' + token;
             })
-            .error(function (data, status, headers, config) {
+            .error(function(data, status, headers, config) {
               $rootScope.addAlert('Could not authorize token: <strong>' + token + '</strong>');
               $rootScope.token = '';
               $cookies.token = '';
