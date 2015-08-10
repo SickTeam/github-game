@@ -6,8 +6,12 @@
   "license": "MIT",
   "dependencies": {
     "angular": "*",
-    "ui-router": "*",
-    "angular-sanitize": "*"
+    "angular-animate": "*",
+    "angular-local-storage": "*",
+    "angular-sanitize": "*",
+    "angular-toastr": "*",
+    "angular-bootstrap": "*",
+    "angular-ui-router": "*"
   },
   "resolutions": {
     "angular": "1.4.3"

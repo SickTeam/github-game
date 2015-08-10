@@ -5,6 +5,16 @@
   "author": "mikaelec",
   "license": "MIT",
   "devDependencies": {
+    "del": "*",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-if": "*",
+    "gulp-inject": "*",
+    "gulp-livereload": "*",
+    "gulp-minify-css": "*",
+    "gulp-minify-html": "*",
+    "gulp-uglify": "*",
+    "run-sequence": "*"
   },
   "dependencies": {
     "bower": "^1.3.12"
