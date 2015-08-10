@@ -11,7 +11,8 @@
     "angular-sanitize": "*",
     "angular-toastr": "*",
     "angular-bootstrap": "*",
-    "angular-ui-router": "*"
+    "angular-ui-router": "*",
+    "bootswatch": "*"
   },
   "resolutions": {
     "angular": "1.4.3"

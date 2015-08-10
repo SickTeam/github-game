@@ -32,6 +32,7 @@ var JS_LIBS = [
 ];
 
 var CSS_LIBS = [
+    'bootswatch/lumen/bootstrap.css',
     'angular-toastr/dist/angular-toastr.css'
 ];
 
