@@ -1,22 +1,15 @@
 {
   "name": "GitHubGame",
   "version": "1.0.0",
-  "authors": [
-    "mikaelec"
-  ],
+  "author": "mikaelec",
   "description": "Guess the committer!",
-  "main": "app.js",
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components"
-  ],
   "dependencies": {
-    "angular": "~1.3.14",
-    "angular-cookies": "~1.3.14",
-    "angular-resource": "~1.3.14",
-    "angular-route": "~1.3.14",
-    "angular-sanitize": "~1.3.14"
+    "angular": "*",
+    "ui-router": "*",
+    "angular-sanitize": "*"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
   }
 }
