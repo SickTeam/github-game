@@ -23,9 +23,10 @@ var DST_LIB = DST + 'external/';
 
 var JS_LIBS = [
     'angular/angular.js',
-    'angular-ui-router/release/angular-ui-router.js',
     'angular-animate/angular-animate.js',
+    'angular-sanitize/angular-sanitize.js',
     'angular-bootstrap/ui-bootstrap-tpls.js',
+    'angular-ui-router/release/angular-ui-router.js',
     'angular-local-storage/dist/angular-local-storage.js',
     'angular-toastr/dist/angular-toastr.tpls.js'
 ];
@@ -127,7 +128,7 @@ gulp.task('copy:images', function () {
 });
 
 gulp.task('copy:favicon', function () {
-    return gulp.src(SRC + 'favicon.png')
+    return gulp.src(SRC + 'favicon.ico')
         .pipe(gulp.dest(DST));
 });
 

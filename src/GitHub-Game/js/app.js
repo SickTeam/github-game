@@ -1,17 +1,4 @@
 (function() {
-	angular.module('githubgame', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', 'ui.bootstrap'])
-
-		.controller('AlertCtrl', ['$rootScope', function($rootScope) {
-			$rootScope.alerts = [];
-
-			$rootScope.addAlert = function(message, alertType, clearOld) {
-				if (clearOld)
-					$rootScope.alerts.splice(0, $rootScope.alerts.length);
-    		$rootScope.alerts.push({type: alertType, msg: message});
-  		};
-			$rootScope.closeAlert = function(index) {
-	    	$rootScope.alerts.splice(index, 1);
-	  	};
-		}]);
+    angular.module('githubgame', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'toastr'])
 
 })();
