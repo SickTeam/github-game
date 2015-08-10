@@ -32,7 +32,6 @@ var JS_LIBS = [
 ];
 
 var CSS_LIBS = [
-    'bootstrap/dist/css/bootstrap.css',
     'angular-toastr/dist/angular-toastr.css'
 ];
 

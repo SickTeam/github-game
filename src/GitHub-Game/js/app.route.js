@@ -1,22 +1,22 @@
-(function() {
-  angular.module('githubgame')
+(function () {
+    angular.module('githubgame')
 
-    .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-      $locationProvider.html5Mode({ enabled: true, requireBase: false });
-      $locationProvider.hashPrefix('!');
-      $routeProvider
-        .when('/start', {
-          templateUrl: 'partials/start.partial.htm',
-          controller: 'StartController'
-        })
-        .when('/game', {
-          templateUrl: 'partials/game.partial.htm',
-          controller: 'GameController'
-        })
-        .otherwise({
-          templateUrl: 'partials/start.partial.htm',
-          controller: 'StartController'
-        });
-    }]);
+      .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+          function ($stateProvider, $urlRouterProvider, $locationProvider) {
+              $locationProvider.html5Mode(true);
+              $urlRouterProvider.otherwise("/");
+
+              $stateProvider
+                .state('start', {
+                    url: '/',
+                    templateUrl: 'html/start.layout.html',
+                    controller: 'StartController'
+                })
+                .state('game', {
+                    url: '/game',
+                    templateUrl: 'html/game.layout.html',
+                    controller: 'GameController'
+                });
+          }]);
 
 })();

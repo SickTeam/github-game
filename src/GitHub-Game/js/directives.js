@@ -40,48 +40,49 @@
       };    
     }])
 
-    .directive('ownerExists', ['$resource', '$timeout', 'UserRepos', 'OrgRepos', 'ghUrl', function($resource, $timeout, UserRepos, OrgRepos, ghUrl) {
-      return {
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, element, attrs, ngModel) {
-          var stop_timeout;
-          return scope.$watch(function() {
-            return ngModel.$modelValue;
-          }, function(name) {
-            $timeout.cancel(stop_timeout);
+    //.directive('ownerExists', ['$resource', '$timeout', 'UserRepos', 'OrgRepos', 'ghUrl',
+    //    function ($resource, $timeout, UserRepos, OrgRepos, ghUrl) {
+    //  return {
+    //    restrict: 'A',
+    //    require: 'ngModel',
+    //    link: function(scope, element, attrs, ngModel) {
+    //      var stop_timeout;
+    //      return scope.$watch(function() {
+    //        return ngModel.$modelValue;
+    //      }, function(name) {
+    //        $timeout.cancel(stop_timeout);
      
-            if (!name)
-              return;
+    //        if (!name)
+    //          return;
      
-            var path = scope.isOrg ? '/orgs/' : '/users/';
-            var Model = $resource(ghUrl + path + name, null, {
-              query: { isArray: false }
-            });
+    //        var path = scope.isOrg ? '/orgs/' : '/users/';
+    //        var Model = $resource(ghUrl + path + name, null, {
+    //          query: { isArray: false }
+    //        });
    
-            stop_timeout = $timeout(function() {
-              scope.checkingOwner = true;
-              Model.query(null, function(models) {
-                if (scope.isOrg)
-                  OrgRepos.query({ org: name }, function(repos) {
-                    scope.repos = repos.map(function(val) {
-                      return val.name;
-                    });
-                  });
-                else
-                  UserRepos.query({ user: name }, function(repos) {
-                    scope.repos = repos.map(function(val) {
-                      return val.name;
-                    });
-                  });
-                scope.checkingOwner = false;
-                return ngModel.$setValidity('exists', true);
-              }, function() { scope.checkingOwner = false; });
-            }, 500);
-          });
-        }
-      };
-    }])
+    //        stop_timeout = $timeout(function() {
+    //          scope.checkingOwner = true;
+    //          Model.query(null, function(models) {
+    //            if (scope.isOrg)
+    //              OrgRepos.query({ org: name }, function(repos) {
+    //                scope.repos = repos.map(function(val) {
+    //                  return val.name;
+    //                });
+    //              });
+    //            else
+    //              UserRepos.query({ user: name }, function(repos) {
+    //                scope.repos = repos.map(function(val) {
+    //                  return val.name;
+    //                });
+    //              });
+    //            scope.checkingOwner = false;
+    //            return ngModel.$setValidity('exists', true);
+    //          }, function() { scope.checkingOwner = false; });
+    //        }, 500);
+    //      });
+    //    }
+    //  };
+    //}])
 
     .directive('contributorsSelected', [function() {
       return {
