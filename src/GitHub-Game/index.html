@@ -17,19 +17,22 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="">
                     <span class="glyphicon glyphicon-home"></span>
                     GitHub Game
                 </a>
             </div>
-            <div class="navbar-right" ng-controller="TokenController">
-                <button type="button" class="btn btn-default navbar-btn" ng-click="editingToken = true" ng-show="!editingToken">
-                    <img src="img/githublogo.png" width="20" height="20" alt="GitHub Logo">
-                    GitHub Access Token {{verified ? 'X' : ''}}
+            <div class="navbar-collapse navbar-right" ng-controller="TokenController" ng-class="{collapse: isCollapsed}">
+                <button type="button" class="btn btn-default navbar-btn">
+                    <i class="fa fa-github fa-lg"></i>
+                    GitHub Access Token
                 </button>
-                <form class="navbar-form navbar-left" ng-show="editingToken">
-                    <input type="text" class="form-control" placeholder="GitHub Access Token" ng-model="token" key-enter="saveToken(token)" key-escape="editingToken = false" click-focus="editingToken" ng-blur="saveToken(token)">
-                </form>
             </div>
         </div>
     </nav>
