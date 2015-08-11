@@ -5,19 +5,23 @@
         .module('githubgame')
         .controller('tokenController', tokenController);
 
-    tokenController.$inject = ['$rootScope', '$http', '$modal', 'localStorageService', 'toastr'];
+    tokenController.$inject = ['$scope', '$modal', 'localStorageService', 'authService'];
 
-    function tokenController($rootScope, $http, $modal, localStorageService, toastr) {
+    function tokenController($scope, $modal, localStorageService, authService) {
         var vm = this;
 
         vm.open = open;
 
+        vm.isAuth = false;
+
+        $scope.$watch(function () { return authService.auth.isAuth; }, function (newVal, oldVal) {
+            vm.isAuth = newVal;
+        });
+
         activate();
 
         function activate() {
-            vm.token = localStorageService.get('token');
-            if (vm.token)
-                $http.defaults.headers.common.Authorization = 'token ' + vm.token;
+
         }
 
         function open() {
