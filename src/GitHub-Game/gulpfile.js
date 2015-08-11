@@ -14,6 +14,7 @@ var minifyHtml = require('gulp-minify-html');
 var del = require('del');
 var inject = require('gulp-inject');
 var runSequence = require('run-sequence');
+var order = require('gulp-order');
 
 var IS_RELEASE = false;
 var DST = './wwwroot/';
@@ -53,6 +54,9 @@ gulp.task('watch', function () {
 gulp.task('js', function () {
     return gulp.src(SRC + 'js/**/*.js')
         .pipe(iff(IS_RELEASE, uglify()))
+        .pipe(order([
+            '**/app.js'
+        ]))
         .pipe(concat('app.min.js'))
         .pipe(gulp.dest(DST))
         .pipe(livereload());

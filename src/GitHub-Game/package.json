@@ -13,6 +13,7 @@
     "gulp-livereload": "*",
     "gulp-minify-css": "*",
     "gulp-minify-html": "*",
+    "gulp-order": "*",
     "gulp-uglify": "*",
     "run-sequence": "*"
   },
