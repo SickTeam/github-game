@@ -28,8 +28,8 @@
                     GitHub Game
                 </a>
             </div>
-            <div class="navbar-collapse navbar-right" ng-controller="TokenController" ng-class="{collapse: isCollapsed}">
-                <button type="button" class="btn btn-default navbar-btn">
+            <div class="navbar-collapse navbar-right" ng-controller="tokenController as token" ng-class="{collapse: isCollapsed}">
+                <button type="button" class="btn btn-default navbar-btn" ng-click="token.open()">
                     <i class="fa fa-github fa-lg"></i>
                     GitHub Access Token
                 </button>
