@@ -93,9 +93,11 @@ gulp.task('html:views', function () {
 });
 
 gulp.task('clean', function () {
-    return del([
-        DST + '*',
-        '!' + DST + '/Web.config'
+    return del.sync([
+        DST + '**',
+        '!' + './wwwroot',
+        '!' + DST + 'web.config',
+        '!' + DST + 'bin'
     ]);
 });
 
