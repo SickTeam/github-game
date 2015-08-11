@@ -1,7 +1,7 @@
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-gamepad"></i> Start new game</div>
+            <div class="panel-title"><i class="fa fa-code-fork fa-lg"></i> Start new game</div>
         </div>
         <div class="panel-body">
             <form name="gameForm" role="form" class="form-horizontal" ng-submit="gameForm.$valid && startGame(ownerName, repoName, contributors)" novalidate>
@@ -12,7 +12,7 @@
                             <div class="input-group"
                                  ng-class="{'has-warning': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success has-feedback': gameForm.ownerName.$valid}">
                                 <span class="input-group-addon clickable" ng-click="isOrg ? isOrg=false : isOrg=true">
-                                    <span class="glyphicon" ng-class="{'glyphicon-refresh spinning': checkingOwner, 'glyphicon-user': !checkingOwner && !isOrg, 'glyphicon-briefcase': !checkingOwner && isOrg}"></span>
+                                    <i class="fa" ng-class="{'fa-refresh fa-spin': checkingOwner, 'fa-user': !checkingOwner && !isOrg, 'fa-users': !checkingOwner && isOrg}"></i>
                                 </span>
                                 <input name="ownerName" type="text" class="form-control" placeholder="Enter {{isOrg ? 'organization' : 'user'}} name"
                                        ng-model="start.viewState.ownerName" owner-exists ng-change="gameForm.ownerName.$setValidity('exists', false);repos=[];repoName='';gameForm.repoName.$setPristine();contributors=[]" ng-maxlength="20" required>
@@ -22,7 +22,7 @@
                         <div class="col-sm-6">
                             <div class="input-group" ng-class="{'has-warning': gameForm.repoName.$dirty && gameForm.repoName.$invalid, 'has-success has-feedback': gameForm.repoName.$valid}" ng-hide="!gameForm.ownerName.$valid || !repos">
                                 <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-folder-open"></span>
+                                    <span class="fa fa-folder"></span>
                                 </span>
                                 <input name="repoName" type="text" placeholder="Enter repo name" class="form-control" ng-model="start.viewState.repoName" ng-change="contributors=[]" typeahead="repo for repo in repos | filter:$viewValue | orderBy:repo | limitTo:5" typeahead-on-select="start.pickRepo($item, $model, $label)" typeahead-editable="false" required>
                                 <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="gameForm.repoName.$valid"></span>
