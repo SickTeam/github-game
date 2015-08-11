@@ -3,8 +3,9 @@
 
       .constant('ghUrl', 'https://api.github.com')
 
-      .factory('GitHubService', ['$http', 'ghUrl', function ($http, ghUrl) {
+      .factory('gitHubService', ['$http', 'ghUrl', function ($http, ghUrl) {
           var service = {
+              getCurrentUser: getCurrentUser,
               getContributors: getContributors,
               getCommits: getCommits,
               getUserRepos: getUserRepos,
@@ -12,6 +13,10 @@
           };
 
           return service;
+
+          function getCurrentUser() {
+              return $http.get(ghUrl + '/user');
+          }
 
           function getContributors(owner, repo) {
               return $http.get(ghUrl + '/repos/' + owner + '/' + repo + '/contributors');

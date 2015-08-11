@@ -35,6 +35,7 @@
             var toastr = $injector.get('toastr');
 
             var remaining = response.headers('X-RateLimit-Remaining');
+            console.log('API requests remaining: ' + remaining);
             if (remaining && remaining == 0) {
                 toastr.error('No more API requests remaining, consider adding a Personal Access Token',
                     'Rate Spent');
@@ -53,7 +54,7 @@
             var toastr = $injector.get('toastr');
 
             if (rejection.status === 401) {
-                toastr.error('Not uathorized');
+                toastr.error('Bad Access Token or you just ran out of API requests', 'Unauthorized');
             }
             return $q.reject(rejection);
         }

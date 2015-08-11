@@ -15,7 +15,8 @@
 
         var service = {
             auth: auth,
-            fillAuth: fillAuth
+            fillAuth: fillAuth,
+            setToken: setToken
         };
 
         return service;
@@ -29,7 +30,7 @@
         }
 
         function setToken(token) {
-            service.auth.isAuth = true;
+            service.auth.isAuth = token != '';
             service.auth.token = token;
 
             localStorageService.set('auth', service.auth);

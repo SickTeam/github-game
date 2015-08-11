@@ -1,8 +1,8 @@
 (function () {
     angular.module('githubgame')
 
-      .directive('ownerExists', ['$timeout', 'GitHubService',
-          function ($timeout, GitHubService) {
+      .directive('ownerExists', ['$timeout', 'gitHubService',
+          function ($timeout, gitHubService) {
               return {
                   restrict: 'A',
                   require: 'ngModel',
@@ -21,7 +21,7 @@
                           stop_timeout = $timeout(function () {
                               scope.checkingOwner = true;
                               if (scope.isOrg)
-                                  GitHubService.getOrgRepos(name)
+                                  gitHubService.getOrgRepos(name)
                                     .then(function (response) {
                                         scope.repos = response.data.map(function (x) {
                                             return x.name;
@@ -32,7 +32,7 @@
                                         scope.checkingOwner = false;
                                     });
                               else
-                                  GitHubService.getUserRepos(name)
+                                  gitHubService.getUserRepos(name)
                                     .then(function (response) {
                                         scope.repos = response.data.map(function (x) {
                                             return x.name;

@@ -3,9 +3,9 @@
         .module('githubgame')
         .controller('startController', startController);
 
-    startController.$inject = ['toastr', 'GitHubService'];
+    startController.$inject = ['toastr', 'gitHubService'];
 
-    function startController(toastr, GitHubService) {
+    function startController(toastr, gitHubService) {
         var vm = this;
 
         vm.viewState = {
@@ -14,7 +14,7 @@
         };
 
         vm.pickRepo = function (item, model, label) {
-            GitHubService.getContributors(vm.viewState.ownerName, item)
+            gitHubService.getContributors(vm.viewState.ownerName, item)
                 .then(function (response) {
                     vm.contributors = response.data.map(function (x) {
                         return { login: x.login, contributions: x.contributions, selected: true };

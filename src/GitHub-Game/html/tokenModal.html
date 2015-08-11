@@ -2,16 +2,19 @@
     <h3 class="modal-title">Set GitHub Access Token</h3>
 </div>
 <div class="modal-body">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-        <input type="text" class="form-control" placeholder="Token">
-    </div>
+    <form name="tokenForm" novalidate>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+            <input name="token" required type="text" class="form-control" placeholder="Token"
+                   ng-model="tokenModal.viewState.token" ng-change="tokenForm.token.$setValidity('tested', false);">
+        </div>
+    </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary pull-left" type="button" ng-click="tokenModal.test()">
-        <i class="fa fa-flask"></i> Test
+    <button class="btn btn-primary pull-left" type="button" ng-click="tokenModal.test(tokenForm.token)">
+        <i class="fa" ng-class="{'fa-flask': !tokenModal.testing, 'fa-cog fa-spin': tokenModal.testing}"></i> Test
     </button>
-    <button class="btn btn-success" type="button" ng-click="tokenModal.ok()">
+    <button class="btn btn-success" type="button" ng-click="tokenModal.ok()" ng-disabled="!tokenForm.$valid">
         <i class="fa fa-floppy-o"></i> Save
     </button>
     <button class="btn btn-default" type="button" ng-click="tokenModal.cancel()">
