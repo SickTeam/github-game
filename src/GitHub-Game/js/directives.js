@@ -13,8 +13,10 @@
                       }, function (name) {
                           $timeout.cancel(stop_timeout);
 
-                          if (!name)
+                          if (!name) {
+                              ngModel.$setPristine();
                               return;
+                          }
 
                           stop_timeout = $timeout(function () {
                               scope.checkingOwner = true;

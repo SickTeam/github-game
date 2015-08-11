@@ -10,7 +10,7 @@
                 .state('start', {
                     url: '/',
                     templateUrl: 'html/start.layout.html',
-                    controller: 'StartController'
+                    controller: 'startController as start'
                 })
                 .state('game', {
                     url: '/game',
