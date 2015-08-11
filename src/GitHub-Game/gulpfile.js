@@ -33,6 +33,7 @@ var JS_LIBS = [
 
 var CSS_LIBS = [
     'bootswatch/lumen/bootstrap.css',
+    'components-font-awesome/css/font-awesome.css',
     'angular-toastr/dist/angular-toastr.css'
 ];
 
@@ -95,9 +96,10 @@ gulp.task('html:views', function () {
 gulp.task('clean', function () {
     return del.sync([
         DST + '**',
-        '!' + './wwwroot',
+        '!./wwwroot',
         '!' + DST + 'web.config',
-        '!' + DST + 'bin'
+        '!' + DST + 'bin',
+        '!' + DST + 'bin/AspNet.Loader.dll'
     ]);
 });
 
@@ -120,8 +122,10 @@ gulp.task('copy:css', function () {
 });
 
 gulp.task('copy:fonts', function () {
-    return gulp.src(SRC_LIB + 'bootstrap/fonts/*')
-        .pipe(gulp.dest(DST + 'fonts'));
+    return gulp.src([
+        SRC_LIB + 'bootstrap/fonts/*',
+        SRC_LIB + 'components-font-awesome/fonts/*'
+    ]).pipe(gulp.dest(DST + 'fonts'));
 });
 
 gulp.task('copy:images', function () {
