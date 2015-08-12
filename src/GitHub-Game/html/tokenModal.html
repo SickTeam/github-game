@@ -14,7 +14,7 @@
     <button class="btn btn-primary pull-left" type="button" ng-click="tokenModal.test(tokenForm.token)">
         <i class="fa" ng-class="{'fa-flask': !tokenModal.testing, 'fa-cog fa-spin': tokenModal.testing}"></i> Test
     </button>
-    <button class="btn btn-success" type="button" ng-click="tokenModal.ok()" ng-disabled="!tokenForm.$valid">
+    <button class="btn btn-success" type="button" ng-click="tokenModal.ok()">
         <i class="fa fa-floppy-o"></i> Save
     </button>
     <button class="btn btn-default" type="button" ng-click="tokenModal.cancel()">

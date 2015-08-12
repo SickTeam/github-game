@@ -14,8 +14,9 @@
 
           return service;
 
-          function getCurrentUser() {
-              return $http.get(ghUrl + '/user');
+          function getCurrentUser(token) {
+              console.log(token);
+              return $http.get(ghUrl + '/user', token && { headers: { Authorization: 'token ' + token } });
           }
 
           function getContributors(owner, repo) {

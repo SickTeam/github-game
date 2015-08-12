@@ -24,7 +24,7 @@
             config.headers = config.headers || {};
 
             var auth = authService.auth;
-            if (auth && auth.isAuth) {
+            if (auth && auth.isAuth && !config.headers.Authorization) {
                 config.headers.Authorization = 'token ' + auth.token;
             }
 
@@ -35,7 +35,6 @@
             var toastr = $injector.get('toastr');
 
             var remaining = response.headers('X-RateLimit-Remaining');
-            console.log('API requests remaining: ' + remaining);
             if (remaining && remaining == 0) {
                 toastr.error('No more API requests remaining, consider adding a Personal Access Token',
                     'Rate Spent');

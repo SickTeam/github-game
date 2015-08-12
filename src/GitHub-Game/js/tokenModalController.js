@@ -34,7 +34,7 @@
         function test(tokenInput) {
             vm.testing = true;
 
-            gitHubService.getCurrentUser()
+            return gitHubService.getCurrentUser(tokenInput.$modelValue)
                 .then(function (response) {
                     tokenInput.$setValidity('tested', true);
                 }, function (response) {
