@@ -114,6 +114,7 @@ gulp.task('copy:js', function () {
     });
 
     return gulp.src(jsLibs)
+        .pipe(iff(IS_RELEASE, uglify()))
         .pipe(gulp.dest(DST_LIB));
 });
 
@@ -123,6 +124,7 @@ gulp.task('copy:css', function () {
     });
 
     return gulp.src(cssLibs)
+        .pipe(iff(IS_RELEASE, minifyCss()))
         .pipe(gulp.dest(DST_LIB));
 });
 
