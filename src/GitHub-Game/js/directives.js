@@ -8,41 +8,42 @@
                   require: 'ngModel',
                   link: function (scope, element, attrs, ngModel) {
                       var stop_timeout;
-                      return scope.$watch(function () {
-                          return ngModel.$modelValue;
-                      }, function (name) {
+                      return scope.$watch(function () { return ngModel.$modelValue; }, function (newName, oldName) {
                           $timeout.cancel(stop_timeout);
 
-                          if (!name) {
+                          if (!newName) {
                               ngModel.$setPristine();
                               return;
                           }
 
                           stop_timeout = $timeout(function () {
-                              scope.checkingOwner = true;
-                              if (scope.isOrg)
-                                  gitHubService.getOrgRepos(name)
+                              scope.vs.checkingOwner = true;
+                              if (scope.vs.isOrg) {
+                                  gitHubService.getOrgRepos(newName)
                                     .then(function (response) {
-                                        scope.repos = response.data.map(function (x) {
+                                        scope.vs.repos = response.data.map(function (x) {
                                             return x.name;
                                         });
+                                        return ngModel.$setValidity('exists', true);
                                     }, function () {
                                         return ngModel.$setValidity('exists', false);
                                     }).finally(function () {
-                                        scope.checkingOwner = false;
+                                        scope.vs.checkingOwner = false;
                                     });
-                              else
-                                  gitHubService.getUserRepos(name)
+                              }
+                              else {
+                                  gitHubService.getUserRepos(newName)
                                     .then(function (response) {
-                                        scope.repos = response.data.map(function (x) {
+                                        scope.vs.repos = response.data.map(function (x) {
                                             return x.name;
                                         });
+                                        return ngModel.$setValidity('exists', true);
                                     }, function () {
                                         return ngModel.$setValidity('exists', false);
                                     }).finally(function () {
-                                        scope.checkingOwner = false;
+                                        scope.vs.checkingOwner = false;
                                     });
-                              return ngModel.$setValidity('exists', true);
+                              }
                           }, 500);
                       });
                   }
