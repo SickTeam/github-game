@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='build' ProjectOpened='auto-restart' />
+﻿/// <binding BeforeBuild='_build' />
 /*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
@@ -98,7 +98,7 @@ gulp.task('html:views', function () {
         .pipe(livereload());
 });
 
-gulp.task('clean', function () {
+gulp.task('_clean', function () {
     return del.sync([
         DST + '**',
         '!./wwwroot',
@@ -147,12 +147,12 @@ gulp.task('copy:favicon', function () {
 
 gulp.task('copy', ['copy:js', 'copy:css', 'copy:fonts', 'copy:images', 'copy:favicon']);
 gulp.task('html', ['html:index', 'html:views']);
-gulp.task('build', function () {
+gulp.task('_build', function () {
     runSequence(
-        'clean',
+        '_clean',
         ['copy', 'js', 'css'],
         'html');
 });
-gulp.task('release', ['set-release', 'build']);
+gulp.task('_release', ['set-release', '_build']);
 
 autorestart({ task: 'watch' });
