@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('githubgame')
+        .module('github-game')
         .factory('authService', tokenService);
 
     tokenService.$inject = ['$http', 'localStorageService'];

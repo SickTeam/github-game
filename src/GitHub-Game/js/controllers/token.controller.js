@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('githubgame')
+        .module('github-game')
         .controller('tokenController', tokenController);
 
     tokenController.$inject = ['$scope', '$modal', 'localStorageService', 'authService'];
@@ -27,8 +27,8 @@
         function open() {
             var modalInstance = $modal.open({
                 animation: true,
-                templateUrl: 'html/tokenModal.html',
-                controller: 'tokenModalController as tokenModal',
+                templateUrl: 'html/editToken.modal.html',
+                controller: 'editTokenModalController as tokenModal',
                 size: 'lg',
             });
         }

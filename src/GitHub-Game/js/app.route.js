@@ -1,5 +1,5 @@
 (function () {
-    angular.module('githubgame')
+    angular.module('github-game')
 
       .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
           function ($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -15,7 +15,7 @@
                 .state('game', {
                     url: '/game',
                     templateUrl: 'html/game.layout.html',
-                    controller: 'GameController'
+                    controller: 'gameController'
                 });
           }]);
 

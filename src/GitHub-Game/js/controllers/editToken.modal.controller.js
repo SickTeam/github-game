@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('githubgame')
+        .module('github-game')
         .controller('tokenModalController', tokenModalController);
 
     tokenModalController.$inject = ['$modalInstance', 'authService', 'gitHubService'];

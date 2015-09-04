@@ -1,5 +1,5 @@
 (function () {
-    angular.module('githubgame')
+    angular.module('github-game')
 
       .constant('ghUrl', 'https://api.github.com')
 

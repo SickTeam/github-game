@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('githubgame')
+        .module('github-game')
         .factory('authInterceptorService', authInterceptorService);
 
     authInterceptorService.$inject = ['$q', '$injector'];

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('githubgame')
+        .module('github-game')
         .controller('startController', startController);
 
     startController.$inject = ['toastr', 'gitHubService'];

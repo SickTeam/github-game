@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-        .module('githubgame')
+        .module('github-game')
 
-        .constant('githubgame.config', {
+        .constant('github-game.config', {
             apiBaseUri: 'https://api.github.com/',
             clientId: 'GitHub-Game'
         })

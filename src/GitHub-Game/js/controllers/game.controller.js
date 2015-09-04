@@ -1,7 +1,7 @@
 (function() {
-  angular.module('githubgame')
+  angular.module('github-game')
 
-    .controller('GameController', ['$scope', '$rootScope', '$routeParams', 'Commits', function($scope, $rootScope, $routeParams, Commits) {
+    .controller('gameController', ['$scope', '$rootScope', '$routeParams', 'Commits', function($scope, $rootScope, $routeParams, Commits) {
       $scope.contributors = $routeParams.contributors.split(',');
       $scope.contributors = $scope.contributors.map(function(x) {
         return { login: x, trueNeg: false, truePos: false, falsePos: false };
