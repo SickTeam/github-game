@@ -3,7 +3,7 @@
 
     angular
         .module('github-game')
-        .controller('tokenModalController', tokenModalController);
+        .controller('editTokenModalController', tokenModalController);
 
     tokenModalController.$inject = ['$modalInstance', 'authService', 'gitHubService'];
 
