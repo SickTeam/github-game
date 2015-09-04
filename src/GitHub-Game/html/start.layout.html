@@ -29,7 +29,7 @@
                                 </span>
                                 <input name="repoName" type="text" placeholder="Enter repo name" class="form-control" ng-model="start.viewState.repoName"
                                        ng-change="vs.contributors=[]" typeahead="repo for repo in vs.repos | filter:$viewValue | orderBy:repo | limitTo:5"
-                                       typeahead-on-select="start.pickRepo($item, $model, $label)" typeahead-editable="false" required>
+                                       typeahead-on-select="start.pickRepo($item, $model, $label)" typeahead-editable="false" typeahead-select-on-exact="true" required>
                             </div>
                         </div>
                     </div>
