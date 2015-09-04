@@ -16,7 +16,7 @@
         return directive;
 
         function link(scope, element, attrs, ngModel) {
-            return scope.$watch('contributors', function (contribs) {
+            return scope.$watch(function () { return ngModel.$modelValue; }, function (contribs) {
                 if (!contribs)
                     return ngModel.$setValidity('enoughChecked', false);
                 else

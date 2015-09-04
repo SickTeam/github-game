@@ -27,33 +27,18 @@
 
                 stop_timeout = $timeout(function () {
                     scope.vs.checkingOwner = true;
-                    if (scope.vs.isOrg) {
-                        gitHubService.getOrgRepos(newName)
-                          .then(function (response) {
-                              scope.vs.repos = response.data.map(function (x) {
-                                  return x.name;
-                              });
-                              return ngModel.$setValidity('exists', true);
-                          }, function () {
-                              return ngModel.$setValidity('exists', false);
-                          }).finally(function () {
-                              scope.vs.checkingOwner = false;
+                    gitHubService.getUserRepos(newName)
+                      .then(function (response) {
+                          scope.vs.repos = response.data.map(function (x) {
+                              return x.name;
                           });
-                    }
-                    else {
-                        gitHubService.getUserRepos(newName)
-                          .then(function (response) {
-                              scope.vs.repos = response.data.map(function (x) {
-                                  return x.name;
-                              });
-                              return ngModel.$setValidity('exists', true);
-                          }, function () {
-                              return ngModel.$setValidity('exists', false);
-                          }).finally(function () {
-                              scope.vs.checkingOwner = false;
-                          });
-                    }
-                }, 500);
+                          return ngModel.$setValidity('exists', true);
+                      }, function () {
+                          return ngModel.$setValidity('exists', false);
+                      }).finally(function () {
+                          scope.vs.checkingOwner = false;
+                      });
+                }, 1000);
             });
         }
     }

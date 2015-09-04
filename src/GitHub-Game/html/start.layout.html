@@ -10,11 +10,11 @@
                     <div class="form-group">
                         <div class="col-sm-6">
                             <div class="input-group"
-                                 ng-class="{'has-error': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success': gameForm.ownerName.$valid}">
-                                <span class="input-group-addon clickable" ng-click="vs.isOrg ? vs.isOrg=false : vs.isOrg=true">
-                                    <i class="fa" ng-class="{'fa-refresh fa-spin': vs.checkingOwner, 'fa-user': !vs.checkingOwner && !vs.isOrg, 'fa-users': !vs.checkingOwner && vs.isOrg}"></i>
+                                 ng-class="{'has-warning': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success': gameForm.ownerName.$valid}">
+                                <span class="input-group-addon">
+                                    <i class="fa" ng-class="{'fa-refresh fa-spin': vs.checkingOwner, 'fa-user': !vs.checkingOwner}"></i>
                                 </span>
-                                <input name="ownerName" type="text" class="form-control" placeholder="Enter {{vs.isOrg ? 'organization' : 'user'}} name"
+                                <input name="ownerName" type="text" class="form-control" placeholder="Enter user/organization name"
                                        ng-model="start.viewState.ownerName" owner-exists
                                        ng-change="gameForm.ownerName.$setValidity('exists', false);vs.repos=[];vs.repoName='';gameForm.repoName.$setPristine();vs.contributors=[]"
                                        ng-maxlength="20" required>
@@ -40,7 +40,7 @@
                             <legend>Contributors</legend>
                             <div class="checkbox" ng-repeat="c in start.contributors | orderBy:'login'">
                                 <label>
-                                    <input type="checkbox" value="{{c.login}}" ng-model="contributors[$index].selected">
+                                    <input type="checkbox" value="{{c.login}}" ng-model="start.contributors[$index].selected">
                                     {{c.login}} <span class="text-info">({{c.contributions}})</span>
                                 </label>
                             </div>

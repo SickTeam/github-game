@@ -9,7 +9,6 @@
         var vm = this;
 
         vm.viewState = {
-            isOrg: false,
             repoName: '',
             ownerName: ''
         };
