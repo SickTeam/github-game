@@ -58,6 +58,7 @@
         };
 
         vm.nextCommit = function () {
+            vm.commit = undefined;
             vm.ready = false;
             $scope.$broadcast('commit-get', vm.commits.pop());
         };
