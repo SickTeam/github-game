@@ -129,7 +129,6 @@ gulp.task('copy:css', function () {
 
 gulp.task('copy:fonts', function () {
     return gulp.src([
-        SRC_LIB + 'bootstrap/fonts/*',
         SRC_LIB + 'components-font-awesome/fonts/*'
     ]).pipe(gulp.dest(DST + 'fonts'));
 });

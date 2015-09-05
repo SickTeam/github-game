@@ -5,17 +5,14 @@
   "description": "Guess the committer!",
   "license": "MIT",
   "dependencies": {
-    "angular": "*",
+    "angular": "^1.4.5",
     "angular-animate": "*",
     "angular-local-storage": "*",
-    "angular-sanitize": "*",
-    "angular-toastr": "*",
-    "angular-bootstrap": "*",
-    "angular-ui-router": "*",
-    "bootswatch": "*",
-    "components-font-awesome": "*"
-  },
-  "resolutions": {
-    "angular": "1.4.3"
+    "angular-sanitize": "^1.4.5",
+    "angular-toastr": "^1.5.0",
+    "angular-bootstrap": "^0.13.4",
+    "angular-ui-router": "^0.2.15",
+    "bootswatch": "^3.3.5+3",
+    "components-font-awesome": "^4.4.0"
   }
 }
