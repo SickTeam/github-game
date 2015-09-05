@@ -7,9 +7,8 @@
           var service = {
               getCurrentUser: getCurrentUser,
               getContributors: getContributors,
-              getCommits: getCommits,
-              getUserRepos: getUserRepos,
-              getOrgRepos: getOrgRepos
+              getCommit: getCommit,
+              getUserRepos: getUserRepos
           };
 
           return service;
@@ -22,16 +21,12 @@
               return $http.get(ghUrl + '/repos/' + owner + '/' + repo + '/contributors');
           }
 
-          function getCommits(owner, repo, sha) {
+          function getCommit(owner, repo, sha) {
               return $http.get(ghUrl + '/repos/' + owner + '/' + repo + '/commits/' + sha, { per_page: 100, page: 1 });
           }
 
           function getUserRepos(user) {
               return $http.get(ghUrl + '/users/' + user + '/repos');
-          }
-
-          function getOrgRepos(org) {
-              return $http.get(ghUrl + '/orgs/' + org + '/repos');
           }
       }]);
 
