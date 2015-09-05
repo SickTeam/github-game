@@ -3,7 +3,9 @@
 
       .constant('ghUrl', 'https://api.github.com')
 
-      .factory('gitHubService', ['$http', 'ghUrl', function ($http, ghUrl) {
+      .factory('gitHubService', ['$http', '$q', 'ghUrl', function ($http, $q, ghUrl) {
+          var PER_PAGE = 100;
+
           var service = {
               getCurrentUser: getCurrentUser,
               getContributors: getContributors,
@@ -26,39 +28,36 @@
               return $http.get(ghUrl + '/repos/' + owner + '/' + repo + '/commits/' + sha, { per_page: 100, page: 1 });
           }
 
-          function getCommits(owner, repo, page) {
-              page = page || 1;
+          function getCommits(owner, repo) {
+              return getContributors(owner, repo)
+                  .then(function (result) {
+                      var promises = [];
+                      angular.forEach(result.data, function (contributor) {
+                          for (var i = 1; (i * PER_PAGE - PER_PAGE) < contributor.contributions; ++i) {
+                              var promise = $http({
+                                  method: 'GET',
+                                  url: ghUrl + '/repos/' + owner + '/' + repo + '/commits',
+                                  params: { author: contributor.login, per_page: PER_PAGE, page: i }
+                              });
+                              promises.push(promise);
+                          }
+                      });
 
-              Commits.query({ owner: $routeParams.owner, repo: $routeParams.repo, page: page },
-                function (data, headers) {
-                    if (data !== undefined && data.length > 0) {
-                        var d = data;
-                        var isContributor = function (x) {
-                            for (var i = 0; i < $scope.contributors.length; i++) {
-                                if (x == $scope.contributors[i].login)
-                                    return true;
-                            }
-                            return false;
-                        };
-                        d = d.filter(function (x) {
-                            return isContributor(x.author.login);
-                        });
-                        d = d.map(function (x) {
-                            return x.sha;
-                        });
-                        $scope.commits = $scope.commits.concat(d);
+                      return $q.all(promises);
+                  })
+                  .then(function (result) {
+                      var SHAs = [];
 
-                        getCommits(page + 1);
-                    }
-                    else {
-                        $scope.commits = (function (arr) {
-                            for (var j, x, i = arr.length; i; j = Math.floor(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
-                            return arr;
-                        })($scope.commits);
-                        $scope.stats.remaining = $scope.commits.length;
-                        $scope.$broadcast('commit-get', $scope.commits.pop());
-                    }
-                });
+                      angular.forEach(result, function (commitsArr) {
+                          angular.forEach(commitsArr.data, function (commit) {
+                              SHAs.push(commit.sha);
+                          });
+                      });
+
+                      for (var j, x, i = SHAs.length; i; j = Math.floor(Math.random() * i), x = SHAs[--i], SHAs[i] = SHAs[j], SHAs[j] = x);
+
+                      return SHAs;
+                  });
           }
 
           function getUserRepos(user) {
