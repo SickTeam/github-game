@@ -5,7 +5,7 @@
 
     config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-    function config($stateProvider, $urlRouterProvider, $locationProvider) {
+    function config($stateProvider, $urlRouterProvider, $locationProvider, $q, $timeout) {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
 
