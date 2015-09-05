@@ -4,7 +4,7 @@
             <div class="panel-title"><i class="fa fa-code-fork fa-lg"></i> Start new game</div>
         </div>
         <div class="panel-body">
-            <form name="gameForm" role="form" class="form-horizontal" ng-submit="gameForm.$valid && startGame(ownerName, repoName, contributors)" novalidate>
+            <form name="gameForm" role="form" class="form-horizontal" ng-submit="gameForm.$valid && start.startGame(start.viewState.ownerName, start.viewState.repoName, start.contributors)" novalidate>
                 <fieldset>
                     <legend>Find repo</legend>
                     <div class="form-group">
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="submit" class="btn btn-primary pull-right" ng-show="gameForm.$valid">
-                            <span class="glyphicon glyphicon-arrow-right"></span>
+                            <i class="fa fa-arrow-right"></i>
                             <span class="btn-text">Start Game</span>
                         </button>
                     </div>

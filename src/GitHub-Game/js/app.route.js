@@ -16,9 +16,14 @@
               controller: 'startController as start'
           })
           .state('game', {
-              url: '/game',
+              url: '/game?owner&repo&contributors',
               templateUrl: 'html/game.layout.html',
-              controller: 'gameController'
+              controller: 'gameController as game',
+              resolve: {
+                  params: function ($stateParams, $q) {
+                      return $q.when($stateParams);
+                  }
+              }
           });
     }
 

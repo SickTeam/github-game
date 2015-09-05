@@ -3,9 +3,9 @@
         .module('github-game')
         .controller('startController', startController);
 
-    startController.$inject = ['toastr', 'gitHubService'];
+    startController.$inject = ['$state', 'toastr', 'gitHubService'];
 
-    function startController(toastr, gitHubService) {
+    function startController($state, toastr, gitHubService) {
         var vm = this;
 
         vm.viewState = {
@@ -25,16 +25,16 @@
         };
 
         vm.startGame = function (ownerName, repoName, contributors) {
-            //var contribs = '';
-            //contributors.forEach(function (x) {
-            //    if (x.selected) {
-            //        if (contribs !== '')
-            //            contribs = contribs + ',' + x.login;
-            //        else
-            //            contribs = x.login;
-            //    }
-            //});
-            //$location.url('/game?owner=' + ownerName + '&repo=' + repoName + '&contributors=' + contribs);
+            var contribs = '';
+            contributors.forEach(function (x) {
+                if (x.selected) {
+                    if (contribs !== '')
+                        contribs = contribs + ',' + x.login;
+                    else
+                        contribs = x.login;
+                }
+            });
+            $state.go('game', { owner: ownerName, repo: repoName, contributors: contribs });
         };
     }
 
