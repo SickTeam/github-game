@@ -20,15 +20,15 @@
               templateUrl: 'html/game.layout.html',
               controller: 'gameController as game',
               resolve: {
-                  params: function ($stateParams, $q) {
+                  params: ['$stateParams', '$q', function ($stateParams, $q) {
                       return $q.when($stateParams);
-                  },
-                  commits: function ($stateParams, gitHubService) {
+                  }],
+                  commits: ['$stateParams', 'gitHubService', function ($stateParams, gitHubService) {
                       var owner = $stateParams.owner;
                       var repo = $stateParams.repo;
 
                       return gitHubService.getCommits(owner, repo);
-                  }
+                  }]
               }
           });
     }
