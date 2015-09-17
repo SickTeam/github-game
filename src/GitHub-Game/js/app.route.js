@@ -10,21 +10,31 @@
         $urlRouterProvider.otherwise("/");
 
         $stateProvider
-          .state('start', {
-              url: '/',
-              templateUrl: 'html/start.layout.html',
-              controller: 'startController as start'
-          })
-          .state('game', {
-              url: '/game/:gameId',
-              templateUrl: 'html/game.layout.html',
-              controller: 'gameController as game',
-              resolve: {
-                  params: ['$stateParams', '$q', function ($stateParams, $q) {
-                      return $q.when($stateParams);
-                  }]
-              }
-          });
+            .state('start', {
+                url: '/',
+                templateUrl: 'html/start.layout.html',
+                controller: 'startController as start'
+            })
+            .state('game', {
+                abstract: true,
+                url: '/game/:gameId',
+                templateUrl: 'html/game.layout.html',
+                controller: 'gameController as game',
+                resolve: {
+                    params: ['$stateParams', '$q', function ($stateParams, $q) {
+                        return $q.when($stateParams);
+                    }]
+                }
+            })
+            .state('game.setup', {
+                url: '/setup'
+            })
+            .state('game.actual', {
+                url: '/actual'
+            })
+            .state('game.finished', {
+                url: '/finished'
+            });
     }
 
 })();
