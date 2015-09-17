@@ -16,18 +16,12 @@
               controller: 'startController as start'
           })
           .state('game', {
-              url: '/game?owner&repo&contributors',
+              url: '/game',
               templateUrl: 'html/game.layout.html',
               controller: 'gameController as game',
               resolve: {
                   params: ['$stateParams', '$q', function ($stateParams, $q) {
                       return $q.when($stateParams);
-                  }],
-                  commits: ['$stateParams', 'gitHubService', function ($stateParams, gitHubService) {
-                      var owner = $stateParams.owner;
-                      var repo = $stateParams.repo;
-
-                      return gitHubService.getCommits(owner, repo);
                   }]
               }
           });

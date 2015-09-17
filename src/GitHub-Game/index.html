@@ -27,13 +27,6 @@
                     <i class="fa fa-github-alt fa-lg"></i> GitHub Game
                 </a>
             </div>
-            <div class="navbar-collapse navbar-right" ng-controller="tokenController as token" ng-class="{collapse: isCollapsed}">
-                <button type="button" class="btn btn-default btn-block navbar-btn" ng-click="token.open()">
-                    <i class="fa fa-github fa-lg" ng-class="{'text-danger': !token.isAuth, 'text-success': token.isAuth }"
-                       tooltip-placement="left" tooltip="{{ token.isAuth ? 'Access Token' : 'No Access Token' }}"></i>
-                    GitHub Access Token
-                </button>
-            </div>
         </div>
     </nav>
     <!-- Loading screen -->

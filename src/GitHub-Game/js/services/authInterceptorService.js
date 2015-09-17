@@ -32,18 +32,6 @@
         }
 
         function response(response) {
-            var toastr = $injector.get('toastr');
-
-            var remaining = response.headers('X-RateLimit-Remaining');
-            if (remaining && remaining == 0) {
-                toastr.error('No more API requests remaining, consider adding a Personal Access Token',
-                    'Rate Spent');
-            }
-            else if (remaining && remaining < 20) {
-                toastr.warning('Only ' + remaining + ' API requests remaining, consider adding a Personal Access Token',
-                    'Rate Nearly Spent');
-            }
-
             return response;
         }
 
