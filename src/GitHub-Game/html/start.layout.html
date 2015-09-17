@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             <form name="gameForm" role="form" class="form-horizontal" novalidate
-                  ng-submit="gameForm.$valid && start.startGame()">
+                  ng-submit="start.createGame()">
                 <fieldset>
                     <legend>GitHub Repository</legend>
                     <div class="form-group">
@@ -46,9 +46,9 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="submit" class="btn btn-primary pull-right"
-                                ng-disabled="!gameForm.$valid" resolve-loader-button>
+                                resolve-loader-button>
                             <i class="fa fa-arrow-right"></i>
-                            <span class="btn-text">Start Game</span>
+                            <span class="btn-text">Create Game</span>
                         </button>
                     </div>
                 </div>

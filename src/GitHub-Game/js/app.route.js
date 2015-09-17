@@ -16,7 +16,7 @@
               controller: 'startController as start'
           })
           .state('game', {
-              url: '/game',
+              url: '/game/:gameId',
               templateUrl: 'html/game.layout.html',
               controller: 'gameController as game',
               resolve: {

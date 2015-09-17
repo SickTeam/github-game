@@ -3,10 +3,12 @@
         .module('github-game')
         .controller('startController', startController);
 
-    startController.$inject = [];
+    startController.$inject = ['$state', 'authService', 'apiService'];
 
-    function startController() {
+    function startController($state, authService, apiService) {
         var vm = this;
+
+        vm.createGame = createGame;
 
         activate();
 
@@ -16,6 +18,20 @@
                 username: '',
                 token: ''
             };
+        }
+
+        function createGame() {
+            var repo = splitRepo(vm.vs.repository);
+
+            apiService.createGame(splitRepo.owner, splitRepo.repo, vm.vs.username, vm.vs.token)
+                .then(function (data) {
+                    authService.setToken(data.userId);
+                    $state.go('game', { gameId: data.gameId });
+                });
+        }
+
+        function splitRepo(repository) {
+            return { owner: 'sw701e14', repo: 'code' };
         }
     }
 
