@@ -1,55 +1,52 @@
-<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+<div class="col-sm-8 col-sm-offset-2">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-code-fork fa-lg"></i> Start new game</div>
+            <div class="panel-title"><i class="fa fa-lg fa-code-fork"></i> Start new game</div>
         </div>
         <div class="panel-body">
-            <form name="gameForm" role="form" class="form-horizontal" ng-submit="gameForm.$valid && start.startGame(start.viewState.ownerName, start.viewState.repoName, start.contributors)" novalidate>
+            <form name="gameForm" role="form" class="form-horizontal" novalidate
+                  ng-submit="gameForm.$valid && start.startGame()">
                 <fieldset>
-                    <legend>Find repo</legend>
+                    <legend>GitHub Repository</legend>
                     <div class="form-group">
-                        <div class="col-sm-6">
-                            <div class="input-group"
-                                 ng-class="{'has-warning': gameForm.ownerName.$dirty && gameForm.ownerName.$invalid, 'has-success': gameForm.ownerName.$valid}">
+                        <div class="col-xs-12">
+                            <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa" ng-class="{'fa-refresh fa-spin': vs.checkingOwner, 'fa-user': !vs.checkingOwner}"></i>
+                                    <i class="fa fa-folder"></i>
                                 </span>
-                                <input name="ownerName" type="text" class="form-control" placeholder="Enter user/organization name"
-                                       ng-model="start.viewState.ownerName" owner-exists
-                                       ng-change="gameForm.ownerName.$setValidity('exists', false);vs.repos=[];start.viewState.repoName='';gameForm.repoName.$setPristine();start.contributors=[]"
-                                       ng-maxlength="20" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="input-group"
-                                 ng-class="{'has-warning': gameForm.repoName.$dirty && gameForm.repoName.$invalid, 'has-success': gameForm.repoName.$valid}"
-                                 ng-hide="!gameForm.ownerName.$valid || !vs.repos">
-                                <span class="input-group-addon">
-                                    <span class="fa fa-folder"></span>
-                                </span>
-                                <input name="repoName" type="text" placeholder="Enter repo name" class="form-control" ng-model="start.viewState.repoName"
-                                       ng-change="start.contributors=[]" typeahead="repo for repo in vs.repos | filter:$viewValue | orderBy:repo | limitTo:5"
-                                       typeahead-on-select="start.pickRepo($item, $model, $label)" typeahead-editable="false" typeahead-select-on-exact="true" required>
+                                <input name="repository" type="text" class="form-control" placeholder="GitHub repository URL" required
+                                       ng-model="start.vs.repository">
                             </div>
                         </div>
                     </div>
                 </fieldset>
-                <div class="form-group" ng-show="gameForm.repoName.$valid">
-                    <div class="col-sm-12">
-                        <fieldset contributors-selected ng-model="start.contributors">
-                            <legend>Contributors</legend>
-                            <div class="checkbox" ng-repeat="c in start.contributors | orderBy:'login'">
-                                <label>
-                                    <input type="checkbox" value="{{c.login}}" ng-model="start.contributors[$index].selected">
-                                    {{c.login}} <span class="text-info">({{c.contributions}})</span>
-                                </label>
+                <fieldset>
+                    <legend>Username and Token</legend>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <input name="username" type="text" class="form-control" placeholder="Username" required
+                                       ng-model="start.vs.username">
                             </div>
-                        </fieldset>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                                <input name="token" type="text" class="form-control" placeholder="GitHub Auth Token" required
+                                       ng-model="start.vs.token">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary pull-right" ng-show="gameForm.$valid" resolve-loader-button>
+                        <button type="submit" class="btn btn-primary pull-right"
+                                ng-disabled="!gameForm.$valid" resolve-loader-button>
                             <i class="fa fa-arrow-right"></i>
                             <span class="btn-text">Start Game</span>
                         </button>

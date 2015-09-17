@@ -11,7 +11,11 @@
         activate();
 
         function activate() {
-
+            vm.vs = {
+                repository: '',
+                username: '',
+                token: ''
+            };
         }
     }
 
