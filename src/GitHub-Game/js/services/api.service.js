@@ -8,16 +8,15 @@
     apiService.$inject = ['$http', '$q', '$timeout'];
 
     function apiService($http, $q, $timeout) {
-        var service = {
+        let service = {
             createGame: createGame
         };
 
         return service;
 
         function createGame(owner, repo, username, token) {
-            return $q(function (resolve, reject) {
-                $timeout(() => resolve({ gameId: 'secretgame', userId: 'secretuser' }), 1000);
-            });
+            return $q((resolve, reject) =>
+                $timeout(() => resolve({ gameId: 'secretgame', userId: 'secretuser' }), 1000) );
         }
     }
 })();
