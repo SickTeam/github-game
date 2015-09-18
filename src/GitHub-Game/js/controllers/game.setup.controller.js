@@ -10,16 +10,25 @@
     function gameSetupController(params, setup) {
         var vm = this;
 
-        vm.contributors = setup.contributors;
-        vm.options = extractOptions(setup);
+        vm.save = save;
+        vm.start = start;
 
         activate();
 
         function activate() {
+            vm.contributors = setup.contributors;
+            vm.options = _extractOptions(setup);
+        }
+
+        function save() {
 
         }
 
-        function extractOptions(options) {
+        function start() {
+
+        }
+
+        function _extractOptions(options) {
             var extracted = [];
 
             for (var key in options) {

@@ -1,4 +1,5 @@
-﻿<form name="setupForm" class="form">
+﻿<form name="setupForm" class="form"
+      ng-submit="setupForm.$valid && gameSetup.save()">
     <div class="row">
         <div class="col-sm-6">
             <fieldset>
@@ -23,6 +24,19 @@
                     {{option.name}}
                 </label>
             </div>
+        </div>
+    </div>
+    <div class="row pull-right">
+        <div class="col-xs-12">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+            <button type="button" class="btn btn-sm btn-primary"
+                    ng-click="gameSetup.start()">
+                <i class="fa fa-arrow-right"></i>
+                Start
+            </button>
         </div>
     </div>
 </form>
