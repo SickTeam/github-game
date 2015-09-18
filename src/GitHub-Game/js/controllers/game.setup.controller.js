@@ -5,9 +5,9 @@
         .module('github-game')
         .controller('gameSetupController', gameSetupController);
 
-    gameSetupController.$inject = ['params', 'setup', 'apiService'];
+    gameSetupController.$inject = ['$state', 'params', 'setup', 'apiService'];
 
-    function gameSetupController(params, setup, apiService) {
+    function gameSetupController($state, params, setup, apiService) {
         var vm = this;
 
         vm.save = save;
@@ -30,13 +30,19 @@
 
             apiService.putSetup(vm.params.gameId, newSetup)
                 .then(response => {
-
+                    
                 })
                 .finally(() => vm.loadingSave = false);
         }
 
         function start() {
+            vm.loadingStart = true;
 
+            apiService.putState(vm.params.gameId, 'start')
+                .then((response) => {
+                    $state.go('game.actual', vm.params);
+                })
+                .finally(() => vm.loadingStart = false);
         }
 
         function _extractOptions(options) {

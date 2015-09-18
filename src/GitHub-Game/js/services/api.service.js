@@ -12,7 +12,8 @@
             createGame: createGame,
             getPlayers: getPlayers,
             getSetup: getSetup,
-            putSetup: putSetup
+            putSetup: putSetup,
+            putState: putState
         };
 
         return service;
@@ -36,6 +37,12 @@
         }
 
         function putSetup(gameId, newSetup) {
+            return $q((resolve, reject) =>
+                $timeout(() => resolve(), 1000)    
+            );
+        }
+
+        function putState(gameId, newState) {
             return $q((resolve, reject) =>
                 $timeout(() => resolve(), 1000)    
             );
