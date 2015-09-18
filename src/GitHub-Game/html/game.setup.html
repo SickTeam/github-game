@@ -28,12 +28,12 @@
     </div>
     <div class="row pull-right">
         <div class="col-xs-12">
-            <button type="submit" class="btn btn-sm btn-primary">
-                <i class="fa fa-save"></i>
+            <button type="submit" class="btn btn-sm btn-primary" ng-disabled="gameSetup.loadingSave">
+                <i class="fa" ng-class="{'fa-save': !gameSetup.loadingSave, 'fa-cog fa-spin': gameSetup.loadingSave}"></i>
                 Save
             </button>
             <button type="button" class="btn btn-sm btn-primary"
-                    ng-click="gameSetup.start()">
+                    ng-click="gameSetup.start()" ng-disabled="gameSetup.loadingSave">
                 <i class="fa fa-arrow-right"></i>
                 Start
             </button>

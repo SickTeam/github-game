@@ -11,7 +11,8 @@
         let service = {
             createGame: createGame,
             getPlayers: getPlayers,
-            getSetup: getSetup
+            getSetup: getSetup,
+            putSetup: putSetup
         };
 
         return service;
@@ -31,6 +32,12 @@
         function getSetup(gameId) {
             return $q((resolve, reject) =>
                 $timeout(() => resolve({ contributors: [{ name: 'mikaelec', active: true }, { name: 'deaddog', active: true }], excludeMerges: true, toLowerCase: false }), 1000)
+            );
+        }
+
+        function putSetup(gameId, newSetup) {
+            return $q((resolve, reject) =>
+                $timeout(() => resolve(), 1000)    
             );
         }
     }
