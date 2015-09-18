@@ -31,7 +31,12 @@
                 views: {
                     'game-content@game': {
                         templateUrl: 'html/game.setup.html',
-                        controller: 'gameSetupController as gameSetup'
+                        controller: 'gameSetupController as gameSetup',
+                        resolve: {
+                            setup: ['params', 'apiService',
+                                (params, apiService) => apiService.getSetup(params.gameId)
+                            ]
+                        }
                     }
                 }
             })
