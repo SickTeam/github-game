@@ -21,19 +21,37 @@
                 templateUrl: 'html/game.layout.html',
                 controller: 'gameController as game',
                 resolve: {
-                    params: ['$stateParams', '$q', function ($stateParams, $q) {
-                        return $q.when($stateParams);
-                    }]
+                    params: ['$stateParams', '$q',
+                        ($stateParams, $q) => $q.when($stateParams)
+                    ]
                 }
             })
             .state('game.setup', {
-                url: '/setup'
+                url: '/setup',
+                views: {
+                    'game-content@game': {
+                        templateUrl: 'html/game.setup.html',
+                        controller: 'gameSetupController as gameSetup'
+                    }
+                }
             })
             .state('game.actual', {
-                url: '/actual'
+                url: '/actual',
+                views: {
+                    'game-content@game': {
+                        templateUrl: 'html/game.actual.html',
+                        controller: 'gameActualController as gameActual'
+                    }
+                }
             })
             .state('game.finished', {
-                url: '/finished'
+                url: '/finished',
+                views: {
+                    'game-content@game': {
+                        templateUrl: 'html/game.finished.html',
+                        controller: 'gameFinishedController as gameFinished'
+                    }
+                }
             });
     }
 
