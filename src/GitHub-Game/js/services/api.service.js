@@ -10,6 +10,7 @@
     function apiService($http, $q, $timeout) {
         let service = {
             createGame: createGame,
+            getPlayers: getPlayers,
             getSetup: getSetup
         };
 
@@ -18,6 +19,12 @@
         function createGame(owner, repo, username, token) {
             return $q((resolve, reject) =>
                 $timeout(() => resolve({ gameId: 'secretgame', userId: 'secretuser' }), 1000)
+            );
+        }
+
+        function getPlayers(gameId) {
+            return $q((resolve, reject) =>
+                $timeout(() => resolve(['mikaelec', 'deaddog']), 1000)    
             );
         }
 

@@ -23,6 +23,13 @@
                 resolve: {
                     params: ['$stateParams', '$q',
                         ($stateParams, $q) => $q.when($stateParams)
+                    ],
+                    players: ['params', 'apiService',
+                        (params, apiService) => apiService.getPlayers(params.gameId)
+
+                    ],
+                    setup: ['params', 'apiService',
+                        (params, apiService) => apiService.getSetup(params.gameId)
                     ]
                 }
             })
@@ -31,12 +38,7 @@
                 views: {
                     'game-content@game': {
                         templateUrl: 'html/game.setup.html',
-                        controller: 'gameSetupController as gameSetup',
-                        resolve: {
-                            setup: ['params', 'apiService',
-                                (params, apiService) => apiService.getSetup(params.gameId)
-                            ]
-                        }
+                        controller: 'gameSetupController as gameSetup'
                     }
                 }
             })

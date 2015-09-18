@@ -4,17 +4,16 @@
         .module('github-game')
         .controller('gameController', gameController);
 
-    gameController.$inject = ['params'];
+    gameController.$inject = ['params', 'players'];
 
-    function gameController(params) {
+    function gameController(params, players) {
         var vm = this;
-
-        vm.params = params;
 
         activate();
 
         function activate() {
-
+            vm.params = params;
+            vm.players = players;
         }
     }
 
