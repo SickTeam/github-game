@@ -1,1 +1,23 @@
-﻿<h6>Setup</h6>
+﻿<form name="setupForm" class="form-inline">
+    <div class="row">
+        <div class="col-sm-6">
+            <fieldset>
+                <legend>Contributors</legend>
+                <div class="form-group">
+                    <div class="checkbox"
+                         ng-repeat="contributor in gameSetup.contributors track by contributor.name">
+                        <label>
+                            <input type="checkbox" value="{{contributor.name}}">
+                            {{contributor.name}}
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-6">
+            <fieldset>
+                <legend>Other options</legend>
+            </fieldset>
+        </div>
+    </div>
+</form>

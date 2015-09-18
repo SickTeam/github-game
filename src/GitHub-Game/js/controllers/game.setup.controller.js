@@ -5,10 +5,12 @@
         .module('github-game')
         .controller('gameSetupController', gameSetupController);
 
-    gameSetupController.$inject = [];
+    gameSetupController.$inject = ['params', 'setup'];
 
-    function gameSetupController() {
+    function gameSetupController(params, setup) {
         var vm = this;
+
+        vm.contributors = setup.contributors;
 
         activate();
 
