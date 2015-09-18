@@ -2,46 +2,10 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="panel-title">
-                <i class="fa fa-code-fork"></i> Game
-                <span class="pull-right">
-                    <span class="label label-success">{{game.stats.correct}}</span>
-                    <span class="label label-danger">{{game.stats.incorrect}}</span>
-                    <span class="label label-info">{{game.stats.total}}</span>
-                    <span class="label label-default">{{game.stats.remaining}}</span>
-                </span>
+                <i class="fa fa-code-fork"></i> Game: <span>{{game.params.gameId}}</span>
             </div>
         </div>
-        <div class="panel-body">
-            <div>
-                <div class="text-center">
-
-                </div>
-                <div>
-                    <h4>Here's a commit:</h4>
-                    <pre ng-show="game.commit && game.ready">{{game.commit.message}}
-                    <span class="pull-right"><br />
-                    <span class="text-success">+{{game.commit.additions}}</span>
-                    <span class="text-danger">-{{game.commit.deletions}}</span>
-                    </span>
-                    </pre>
-                    <pre ng-hide="game.commit && game.ready"><i class="fa fa-spinner fa-spin"></i> Getting Commit<br />&nbsp;</pre>
-                    <div><small><strong>Hash:</strong> {{game.guessed ? game.commit.sha : '[Secret]'}}</small></div>
-                </div>
-                <div>
-                    <h4>Guess who:</h4>
-                    <div class="container-fluid">
-                        <div class="row" ng-repeat="con in game.contributors">
-                            <button type="button" class="btn btn-default" ng-click="!game.guessed && game.makeGuess(con)" ng-class="{'btn-success': con.truePos, 'btn-info': con.trueNeg, 'btn-danger': con.falsePos}">
-                                #{{$index+1}}
-                            </button>
-                            <strong>{{con.login}}</strong>
-                        </div>
-                        <div class="row">
-                            <button type="button" class="btn btn-default pull-right" ng-disabled="!game.ready || game.stats.remaining === 0" ng-click="game.nextCommit()">Next commit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="panel-body" ui-view="game-content">
         </div>
     </div>
 </div>
