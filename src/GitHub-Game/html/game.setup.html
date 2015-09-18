@@ -1,16 +1,14 @@
-﻿<form name="setupForm" class="form-inline">
+﻿<form name="setupForm" class="form">
     <div class="row">
         <div class="col-sm-6">
             <fieldset>
                 <legend>Contributors</legend>
-                <div class="form-group">
-                    <div class="checkbox"
-                         ng-repeat="contributor in gameSetup.contributors track by contributor.name">
-                        <label>
-                            <input type="checkbox" value="{{contributor.name}}">
-                            {{contributor.name}}
-                        </label>
-                    </div>
+                <div class="checkbox"
+                     ng-repeat="contributor in gameSetup.contributors track by contributor.name">
+                    <label>
+                        <input type="checkbox" value="{{contributor.name}}" ng-checked="contributor.active">
+                        {{contributor.name}}
+                    </label>
                 </div>
             </fieldset>
         </div>
@@ -18,6 +16,13 @@
             <fieldset>
                 <legend>Other options</legend>
             </fieldset>
+            <div class="checkbox"
+                 ng-repeat="option in gameSetup.options track by option.name">
+                <label>
+                    <input type="checkbox" value="{{option.name}}" ng-checked="option.active">
+                    {{option.name}}
+                </label>
+            </div>
         </div>
     </div>
 </form>
