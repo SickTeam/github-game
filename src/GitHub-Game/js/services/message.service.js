@@ -10,7 +10,7 @@
     function messageService($rootScope, $http, $interval, $q, $timeout, config) {
         var CHECK_INTERVAL = 2000;
         var timestamp;
-        var getMessages;
+        var cancelMessages;
 
         var service = {
             start: start,
@@ -20,11 +20,11 @@
         return service;
 
         function start() {
-            $interval(getMessages, CHECK_INTERVAL);
+            cancelMessages = $interval(getMessages, CHECK_INTERVAL);
         }
 
         function stop() {
-            $interval.cancel(getMessages);
+            $interval.cancel(cancelMessages);
         }
 
         function getMessages() {
