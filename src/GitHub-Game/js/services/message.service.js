@@ -5,9 +5,9 @@
         .module('github-game')
         .factory('messageService', messageService);
 
-    messageService.$inject = ['$http', '$interval', '$q', '$timeout'];
+    messageService.$inject = ['$rootScope', '$http', '$interval', '$q', '$timeout'];
 
-    function messageService($http, $interval, $q, $timeout) {
+    function messageService($rootScope, $http, $interval, $q, $timeout) {
         var CHECK_INTERVAL = 5000;
         var timestamp;
         var getMessages;
@@ -31,14 +31,12 @@
             return $q(function (resolve, reject) {
                 $timeout(() => resolve({ name: 'bogus', resource: { whatever: 'jah' } }), 350);
             }).then(function (data) {
-                handleMessage(data.name, data.resource);
+                broadcastMessage(data.name, data.resource);
             });
         }
 
-        function handleMessage(name, resource) {
-            switch (name) {
-
-            }
+        function broadcastMessage(name, resource) {
+            $rootScope.$broadcast(name, resource);
         }
     }
 })();
