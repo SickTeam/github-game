@@ -5,10 +5,10 @@
         .module('github-game')
         .factory('messageService', messageService);
 
-    messageService.$inject = ['$rootScope', '$http', '$interval', '$q', '$timeout'];
+    messageService.$inject = ['$rootScope', '$http', '$interval', '$q', '$timeout', 'github-game.config'];
 
-    function messageService($rootScope, $http, $interval, $q, $timeout) {
-        var CHECK_INTERVAL = 5000;
+    function messageService($rootScope, $http, $interval, $q, $timeout, config) {
+        var CHECK_INTERVAL = 2000;
         var timestamp;
         var getMessages;
 
@@ -29,9 +29,13 @@
 
         function getMessages() {
             return $q(function (resolve, reject) {
-                $timeout(() => resolve({ name: 'bogus', resource: { whatever: 'jah' } }), 350);
+                $timeout(() => resolve({ timestamp: new Date(), messages: [{ name: 'bogus', resource: { whatever: 'jah' } }] }), 50);
             }).then(function (data) {
-                broadcastMessage(data.name, data.resource);
+                console.log(`${data.messages.length} new message(s) at ${data.timestamp.toJSON()}.`);
+                timestamp = data.timestamp;
+                for (var message in data.messages) {
+                    broadcastMessage(data.name, data.resource);
+                }
             });
         }
 
