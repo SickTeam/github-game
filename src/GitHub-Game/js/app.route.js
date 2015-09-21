@@ -26,7 +26,6 @@
                     ],
                     players: ['params', 'apiService',
                         (params, apiService) => apiService.getPlayers(params.gameId)
-
                     ],
                     setup: ['params', 'apiService',
                         (params, apiService) => apiService.getSetup(params.gameId)

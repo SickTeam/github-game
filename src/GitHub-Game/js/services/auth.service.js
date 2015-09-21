@@ -3,37 +3,57 @@
 
     angular
         .module('github-game')
-        .factory('authService', tokenService);
+        .factory('authService', authService);
 
-    tokenService.$inject = ['$http', 'localStorageService'];
+    authService.$inject = ['$http', 'localStorageService'];
 
-    function tokenService($http, localStorageService) {
-        var auth = {
-            isAuth: false,
-            token: ''
-        };
+    function authService($http, localStorageService) {
+        var AUTH_ID = 'auth';
+
+        var self = this;
+        var auth = {};
+
+        var currentAuth = '';
 
         var service = {
-            auth: auth,
-            fillAuth: fillAuth,
-            setToken: setToken
+            addAuth: addAuth,
+            getCurrentAuth: getCurrentAuth,
+            fillAuth: fillAuth
         };
 
         return service;
 
+        function addAuth(gameId, userId) {
+            self.auth[gameId] = userId;
+            setAuth(self.auth);
+        }
+
+        function getAuth() {
+            return localStorageService.get(AUTH_ID);
+        }
+
+        function getCurrentAuth() {
+            return self.currentAuth;
+        }
+
         function fillAuth() {
-            var auth = localStorageService.get('auth');
+            var auth = getAuth();
             if (auth) {
-                service.auth.isAuth = auth.isAuth;
-                service.auth.token = auth.token;
+                self.auth = auth;
+            }
+            else {
+                self.auth = {};
+                setAuth(self.auth);
             }
         }
 
-        function setToken(token) {
-            service.auth.isAuth = token != '';
-            service.auth.token = token;
+        function setAuth(newAuth) {
+            console.log(newAuth);
+            localStorageService.set(AUTH_ID, newAuth);
+        }
 
-            localStorageService.set('auth', service.auth);
+        function setCurrentAuth(gameId) {
+            self.currentAuth = self.auth[gameId];
         }
     }
 })();
