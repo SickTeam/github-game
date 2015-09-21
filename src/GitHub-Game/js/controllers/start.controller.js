@@ -31,10 +31,10 @@
             }
 
             apiService.createGame(splitRepo.owner, splitRepo.repo, vm.vs.username)
-                .then(function (data) {
+                .then((data) => {
                     authService.setToken(data.gameId, data.userId);
                     $state.go('game.setup', { gameId: data.gameId });
-                }, function (errorResponse) {
+                }, (errorResponse) => {
                     vm.loadingCreate = false;
                 });
         }
