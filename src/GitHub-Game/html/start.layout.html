@@ -31,8 +31,9 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="submit" class="btn btn-primary pull-right"
-                                resolve-loader-button>
-                            <i class="fa fa-arrow-right"></i>
+                                ng-disabled="start.loadingCreate">
+                            <i class="fa"
+                               ng-class="{ 'fa-arrow-right': !start.loadingCreate, 'fa-cog fa-spin': start.loadingCreate }"></i>
                             <span class="btn-text">Create Game</span>
                         </button>
                     </div>

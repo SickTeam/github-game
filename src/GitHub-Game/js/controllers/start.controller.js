@@ -13,6 +13,8 @@
         activate();
 
         function activate() {
+            vm.loadingCreate = false;
+
             vm.vs = {
                 repository: '',
                 username: ''
@@ -20,12 +22,16 @@
         }
 
         function createGame() {
+            vm.loadingCreate = true;
+
             var repo = splitRepo(vm.vs.repository);
 
             apiService.createGame(splitRepo.owner, splitRepo.repo, vm.vs.username)
                 .then(function (data) {
                     authService.setToken(data.gameId, data.userId);
                     $state.go('game.setup', { gameId: data.gameId });
+                }, function (errorResponse) {
+                    vm.loadingCreate = false;
                 });
         }
 
