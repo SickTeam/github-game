@@ -16,7 +16,7 @@
             vm.loadingCreate = false;
 
             vm.vs = {
-                repository: '',
+                repoUrl: '',
                 username: ''
             };
         }
@@ -24,7 +24,11 @@
         function createGame() {
             vm.loadingCreate = true;
 
-            var repo = splitRepo(vm.vs.repository);
+            var repo = splitRepo(vm.vs.repoUrl);
+            if (!repo) {
+                vm.loadingCreate = false;
+                //TODO Handle this error
+            }
 
             apiService.createGame(splitRepo.owner, splitRepo.repo, vm.vs.username)
                 .then(function (data) {
@@ -35,8 +39,13 @@
                 });
         }
 
-        function splitRepo(repository) {
-            return { owner: 'sw701e14', repo: 'code' };
+        function splitRepo(repoUrl) {
+            var regExpSplit = /((http(s?):\/\/github.com\/)|(git@github.com:))([\w\-\_]*)\/([\w\-\_]*)(\.git)?/
+                .exec(repoUrl);
+            var owner = regExpSplit[5];
+            var repo = regExpSplit[6];
+
+            return (owner && repo) ? { owner, repo } : null;
         }
     }
 
