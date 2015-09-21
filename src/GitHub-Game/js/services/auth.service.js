@@ -13,12 +13,13 @@
         var self = this;
         var auth = {};
 
-        var currentAuth = '';
+        var currentAuth;
 
         var service = {
             addAuth: addAuth,
             getCurrentAuth: getCurrentAuth,
-            fillAuth: fillAuth
+            fillAuth: fillAuth,
+            setCurrentAuth: setCurrentAuth
         };
 
         return service;
@@ -48,12 +49,11 @@
         }
 
         function setAuth(newAuth) {
-            console.log(newAuth);
             localStorageService.set(AUTH_ID, newAuth);
         }
 
         function setCurrentAuth(gameId) {
-            self.currentAuth = self.auth[gameId];
+            return self.currentAuth = self.auth[gameId];
         }
     }
 })();

@@ -15,9 +15,9 @@
         function activate() {
             vm.loadingCreate = false;
 
-            vm.vs = {
-                repoUrl: '',
-                username: ''
+            vm.vs = {//TODO Remove dummy data
+                repoUrl: 'https://github.com/SickTeam/github-game',
+                username: 'Acemon'
             };
         }
 

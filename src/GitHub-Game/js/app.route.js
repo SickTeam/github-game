@@ -58,6 +58,16 @@
                         controller: 'gameFinishedController as gameFinished'
                     }
                 }
+            })
+            .state('join', {
+                url: '/join/:gameId',
+                templateUrl: 'html/join.html',
+                controller: 'joinController as join',
+                resolve: {
+                    params: ['$stateParams', '$q',
+                        ($stateParams, $q) => $q.when($stateParams)
+                    ]
+                }
             });
     }
 

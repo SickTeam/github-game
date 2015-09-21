@@ -20,8 +20,20 @@
             });
         }])
 
-        .run(['authService', function (authService) {
+        .run(['$rootScope', '$state', 'authService', function ($rootScope, $state, authService) {
             authService.fillAuth();
+
+            $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+                if (toState.name.match(/game.*/)) {
+                    var gameId = toParams.gameId;
+                    var currentAuth = authService.setCurrentAuth(gameId);
+
+                    if (!currentAuth) {
+                        event.preventDefault();
+                        $state.go('join', { gameId });
+                    }
+                }
+            });
         }]);
 
 })();
