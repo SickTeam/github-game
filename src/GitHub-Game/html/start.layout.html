@@ -6,43 +6,28 @@
         <div class="panel-body">
             <form name="gameForm" role="form" class="form-horizontal" novalidate
                   ng-submit="start.createGame()">
-                <fieldset>
-                    <legend>GitHub Repository</legend>
+                <div class="col-sm-7">
                     <div class="form-group">
-                        <div class="col-xs-12">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-folder"></i>
-                                </span>
-                                <input name="repository" type="text" class="form-control" placeholder="GitHub repository URL" required
-                                       ng-model="start.vs.repository">
-                            </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder"></i>
+                            </span>
+                            <input name="repository" type="text" class="form-control" placeholder="GitHub repository URL" required
+                                   ng-model="start.vs.repository">
                         </div>
                     </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Username and Token</legend>
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-user"></i>
-                                </span>
-                                <input name="username" type="text" class="form-control" placeholder="Username" required
-                                       ng-model="start.vs.username">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-key"></i>
-                                </span>
-                                <input name="token" type="text" class="form-control" placeholder="GitHub Auth Token" required
-                                       ng-model="start.vs.token">
-                            </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input name="username" type="text" class="form-control" placeholder="Username" required
+                                   ng-model="start.vs.username">
                         </div>
                     </div>
-                </fieldset>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="submit" class="btn btn-primary pull-right"

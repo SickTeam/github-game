@@ -15,17 +15,16 @@
         function activate() {
             vm.vs = {
                 repository: '',
-                username: '',
-                token: ''
+                username: ''
             };
         }
 
         function createGame() {
             var repo = splitRepo(vm.vs.repository);
 
-            apiService.createGame(splitRepo.owner, splitRepo.repo, vm.vs.username, vm.vs.token)
+            apiService.createGame(splitRepo.owner, splitRepo.repo, vm.vs.username)
                 .then(function (data) {
-                    authService.setToken(data.userId);
+                    authService.setToken(data.gameId, data.userId);
                     $state.go('game.setup', { gameId: data.gameId });
                 });
         }

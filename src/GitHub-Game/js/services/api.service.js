@@ -18,7 +18,7 @@
 
         return service;
 
-        function createGame(owner, repo, username, token) {
+        function createGame(owner, repo, username) {
             return $q((resolve, reject) =>
                 $timeout(() => resolve({ gameId: 'secretgame', userId: 'secretuser' }), 1000)
             );
