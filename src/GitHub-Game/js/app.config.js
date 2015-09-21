@@ -20,20 +20,38 @@
             });
         }])
 
-        .run(['$rootScope', '$state', 'authService', function ($rootScope, $state, authService) {
-            authService.fillAuth();
+        .run(['$rootScope', '$state', 'authService', 'apiService',
+            ($rootScope, $state, authService, apiService) => {
+                authService.fillAuth();
 
-            $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-                if (toState.name.match(/game.*/)) {
-                    var gameId = toParams.gameId;
-                    var currentAuth = authService.setCurrentAuth(gameId);
+                $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+                    var split = toState.name.split('.');
+                    var state = split[0];
+                    var subState = state.length > 0 && split[1];
 
-                    if (!currentAuth) {
-                        event.preventDefault();
-                        $state.go('join', { gameId });
+                    if (state === 'game') {
+                        var gameId = toParams.gameId;
+
+                        apiService.getState(gameId)
+                            .then((data) => {
+                                var currentAuth = authService.setCurrentAuth(gameId);
+
+                                if (!currentAuth) {
+                                    event.preventDefault();
+                                    $state.go('join', { gameId });
+                                    return;
+                                }
+
+                                if (!subState || (subState !== data.state)) {
+                                    event.preventDefault();
+                                    $state.go(`${state}.${data.state}`, { gameId });
+                                    return;
+                                }
+                            }, (errorResponse) => {
+
+                            });
                     }
-                }
-            });
-        }]);
+                });
+            }]);
 
 })();

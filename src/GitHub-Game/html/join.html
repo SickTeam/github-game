@@ -1,1 +1,23 @@
-﻿<h3>Join: {{join.params.gameId}}</h3>
+﻿<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">
+                <i class="fa fa-lg fa-sign-in"></i> Join Game
+            </h1>
+        </div>
+        <div class="panel-body">
+            <form name="joinForm" novalidate
+                  ng-submit="joinForm.$valid && join.joinGame()">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" required
+                           ng-model="join.vs.username"/>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right"
+                        ng-disabled="join.loadingJoin">
+                    <i class="fa"
+                       ng-class="{ 'fa-arrow-right': !join.loadingJoin, 'fa-cog fa-spin': join.loadingJoin }"></i> Join
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

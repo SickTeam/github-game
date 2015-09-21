@@ -23,7 +23,6 @@
                 }
             })
             .state('game', {
-                abstract: true,
                 url: '/game/:gameId',
                 templateUrl: 'html/game.layout.html',
                 controller: 'gameController as game',
