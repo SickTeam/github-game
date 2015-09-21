@@ -13,7 +13,14 @@
             .state('start', {
                 url: '/',
                 templateUrl: 'html/start.layout.html',
-                controller: 'startController as start'
+                controller: 'startController as start',
+                resolve: {
+                    previousGameIds: ['$q', 'authService',
+                        ($q, authService) => {
+                            return $q.when(authService.getPreviousGameIds());
+                        }
+                    ]
+                }
             })
             .state('game', {
                 abstract: true,

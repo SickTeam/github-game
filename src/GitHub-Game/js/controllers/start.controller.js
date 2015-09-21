@@ -3,9 +3,9 @@
         .module('github-game')
         .controller('startController', startController);
 
-    startController.$inject = ['$state', 'authService', 'apiService'];
+    startController.$inject = ['$state', 'authService', 'apiService', 'previousGameIds'];
 
-    function startController($state, authService, apiService) {
+    function startController($state, authService, apiService, previousGameIds) {
         var vm = this;
 
         vm.createGame = createGame;
@@ -14,6 +14,8 @@
 
         function activate() {
             vm.loadingCreate = false;
+
+            vm.previousGameIds = previousGameIds;
 
             vm.vs = {//TODO Remove dummy data
                 repoUrl: 'https://github.com/SickTeam/github-game',

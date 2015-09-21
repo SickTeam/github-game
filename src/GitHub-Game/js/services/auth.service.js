@@ -18,6 +18,7 @@
         var service = {
             addAuth: addAuth,
             getCurrentAuth: getCurrentAuth,
+            getPreviousGameIds: getPreviousGameIds,
             fillAuth: fillAuth,
             setCurrentAuth: setCurrentAuth
         };
@@ -26,34 +27,42 @@
 
         function addAuth(gameId, userId) {
             self.auth[gameId] = userId;
-            setAuth(self.auth);
-        }
-
-        function getAuth() {
-            return localStorageService.get(AUTH_ID);
+            _setAuth(self.auth);
         }
 
         function getCurrentAuth() {
             return self.currentAuth;
         }
 
+        function getPreviousGameIds() {
+            var gameIds = [];
+            for (var gameId in self.auth)
+                gameIds.push(gameId);
+
+            return gameIds;
+        }
+
         function fillAuth() {
-            var auth = getAuth();
+            var auth = _getAuth();
             if (auth) {
                 self.auth = auth;
             }
             else {
                 self.auth = {};
-                setAuth(self.auth);
+                _setAuth(self.auth);
             }
-        }
-
-        function setAuth(newAuth) {
-            localStorageService.set(AUTH_ID, newAuth);
         }
 
         function setCurrentAuth(gameId) {
             return self.currentAuth = self.auth[gameId];
+        }
+
+        function _getAuth() {
+            return localStorageService.get(AUTH_ID);
+        }
+
+        function _setAuth(newAuth) {
+            localStorageService.set(AUTH_ID, newAuth);
         }
     }
 })();

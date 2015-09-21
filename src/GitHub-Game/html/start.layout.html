@@ -1,7 +1,7 @@
-<div class="col-sm-8 col-sm-offset-2">
+<div class="col-sm-8">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-lg fa-code-fork"></i> Start new game</div>
+            <div class="panel-title"><i class="fa fa-lg fa-code-fork"></i> Start New Game</div>
         </div>
         <div class="panel-body">
             <form name="gameForm" role="form" class="form-horizontal" novalidate
@@ -33,12 +33,31 @@
                         <button type="submit" class="btn btn-primary pull-right"
                                 ng-disabled="start.loadingCreate">
                             <i class="fa"
-                               ng-class="{ 'fa-arrow-right': !start.loadingCreate, 'fa-cog fa-spin': start.loadingCreate }"></i>
+                               ng-class="{ 'fa-plus': !start.loadingCreate, 'fa-cog fa-spin': start.loadingCreate }"></i>
                             <span class="btn-text">Create Game</span>
                         </button>
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<div class="col-sm-4">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <i class="fa fa-lg fa-sign-in"></i> Previous Games
+            </div>
+        </div>
+        <div class="list-group">
+            <a class="list-group-item no-hover"
+               ng-if="start.previousGameIds.length===0">
+                No previous games...
+            </a>
+            <a class="list-group-item"
+               ng-repeat="gameId in start.previousGameIds" ui-sref="game.setup({gameId: gameId})">
+                {{gameId}} <i class="fa fa-arrow-circle-o-right pull-right" style="margin-top: 4px;"></i> 
+            </a>
         </div>
     </div>
 </div>
