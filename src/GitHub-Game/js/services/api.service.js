@@ -46,7 +46,7 @@
 
         function getState(gameId) {
             return $q((resolve, reject) =>
-                $timeout(() => resolve({ state: 'setup' }), 367)
+                $timeout(() => resolve({ state: 'actual' }), 367)
             );
         }
 

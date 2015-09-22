@@ -42,7 +42,7 @@
 
             apiService.putState(vm.params.gameId, 'start')
                 .then((response) => {
-                    $state.go('game.actual', vm.params);
+
                 })
                 .finally(() => vm.loadingStart = false);
         }
