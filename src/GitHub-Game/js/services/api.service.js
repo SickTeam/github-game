@@ -32,9 +32,21 @@
             );
         }
 
+        function getGuesses(gameId, round) {
+            return $q((resolve, reject) =>
+                $timeout(() => resolve([{ name: 'mikaelec', hasGuess: true, guess: 'deaddog' }, { name: 'deaddog', hasGuess: false, guess: null }]))
+            );
+        }
+
         function getPlayers(gameId) {
             return $q((resolve, reject) =>
-                $timeout(() => resolve(['mikaelec', 'deaddog']), 367)    
+                $timeout(() => resolve(['mikaelec', 'deaddog']), 367)
+            );
+        }
+
+        function getRound(gameId, round) {
+            return $q((resolve, reject) =>
+                $timeout(() => resolve({ message: 'blah', linesAdd: 14, linesRemove: 10, committer: 'deaddog' }))
             );
         }
 
@@ -46,19 +58,19 @@
 
         function getState(gameId) {
             return $q((resolve, reject) =>
-                $timeout(() => resolve({ state: 'started' }), 367)
+                $timeout(() => resolve({ state: 'started', round: 1 }), 367)
             );
         }
 
         function putSetup(gameId, newSetup) {
             return $q((resolve, reject) =>
-                $timeout(() => resolve(), 367)    
+                $timeout(() => resolve(), 367)
             );
         }
 
         function putState(gameId, newState) {
             return $q((resolve, reject) =>
-                $timeout(() => resolve(), 367)    
+                $timeout(() => resolve(), 367)
             );
         }
     }
