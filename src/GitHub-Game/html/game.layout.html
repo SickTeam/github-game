@@ -15,8 +15,10 @@
             <i class="fa fa-users"></i> Users
         </div>
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="p in game.players">
-                <i class="fa fa-user"></i> {{p}}
+            <li class="list-group-item" ng-repeat="(k,v) in game.players">
+                <i class="fa fa-user"></i> {{k}}
+                <i class="fa pull-right" style="margin-top: 4px;"
+                   ng-class="{ 'fa-check-circle': v.hasGuess, 'fa-times-circle': !v.hasGuess }"></i>
             </li>
         </ul>
     </div>

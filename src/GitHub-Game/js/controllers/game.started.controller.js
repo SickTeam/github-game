@@ -5,16 +5,22 @@
         .module('github-game')
         .controller('gameActualController', gameActualController);
 
-    gameActualController.$inject = ['$rootScope', 'params'];
+    gameActualController.$inject = ['$rootScope', 'params', 'players', 'apiService'];
 
-    function gameActualController($rootScope, params) {
+    function gameActualController($rootScope, params, players, apiService) {
         var vm = this;
 
         activate();
 
         function activate() {
             vm.params = params;
-            console.log(params);
+
+            apiService.getRound(vm.params.gameId, vm.params.round)
+                .then((response) => {
+
+                }, (errorResponse) => {
+
+                });
 
             $rootScope.$on('roundstart', _handleRoundStart);
             $rootScope.$on('roundguess', _handleRoundGuess);

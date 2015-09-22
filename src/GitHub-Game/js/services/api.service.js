@@ -11,7 +11,9 @@
         let service = {
             createGame: createGame,
             createPlayer: createPlayer,
+            getGuesses: getGuesses,
             getPlayers: getPlayers,
+            getRound: getRound,
             getSetup: getSetup,
             getState: getState,
             putSetup: putSetup,
@@ -40,7 +42,7 @@
 
         function getPlayers(gameId) {
             return $q((resolve, reject) =>
-                $timeout(() => resolve(['mikaelec', 'deaddog']), 367)
+                $timeout(() => resolve({ 'mikaelec': {}, 'deaddog': {} }), 367)
             );
         }
 
