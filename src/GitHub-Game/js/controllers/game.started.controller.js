@@ -14,6 +14,7 @@
 
         function activate() {
             vm.params = params;
+            console.log(params);
 
             $rootScope.$on('roundstart', _handleRoundStart);
             $rootScope.$on('roundguess', _handleRoundGuess);

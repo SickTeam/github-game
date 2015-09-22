@@ -26,6 +26,7 @@
                 url: '/game/:gameId',
                 templateUrl: 'html/game.layout.html',
                 controller: 'gameController as game',
+                params: { round: null },
                 resolve: {
                     params: ['$stateParams', '$q',
                         ($stateParams, $q) => $q.when($stateParams)

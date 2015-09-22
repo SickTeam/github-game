@@ -31,20 +31,28 @@
 
                     if (state === 'game') {
                         var gameId = toParams.gameId;
+                        var round = toParams.round;
 
                         apiService.getState(gameId)
                             .then((data) => {
                                 var currentAuth = authService.setCurrentAuth(gameId);
+                                var newParams = { gameId: gameId, round: data.round || null };
 
                                 if (!currentAuth) {
                                     event.preventDefault();
-                                    $state.go('join', { gameId });
+                                    $state.go('join', newParams);
                                     return;
                                 }
 
                                 if (!subState || (subState !== data.state)) {
                                     event.preventDefault();
-                                    $state.go(`${state}.${data.state}`, { gameId });
+                                    $state.go(`${state}.${data.state}`, newParams);
+                                    return;
+                                }
+
+                                if (subState === 'started' && round !== newParams.round) {
+                                    event.preventDefault();
+                                    $state.go(`${state}.started`, newParams);
                                     return;
                                 }
                             }, (errorResponse) => {
