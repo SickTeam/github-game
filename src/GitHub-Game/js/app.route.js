@@ -53,7 +53,7 @@
                 views: {
                     'game-content@game': {
                         templateUrl: 'html/game.actual.html',
-                        controller: 'gameActualController as gameActual'
+                        controller: 'gameActualController as gameStarted'
                     }
                 }
             })
