@@ -48,7 +48,7 @@
                                     return;
                                 }
                             }, (errorResponse) => {
-
+                                //TODO Handle error when getting game state (probably 404)
                             });
                     }
                 });
