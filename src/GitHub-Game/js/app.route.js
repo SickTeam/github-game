@@ -47,8 +47,8 @@
                     }
                 }
             })
-            .state('game.actual', {
-                url: '/actual',
+            .state('game.started', {
+                url: '/started',
                 views: {
                     'game-content@game': {
                         templateUrl: 'html/game.actual.html',
