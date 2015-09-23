@@ -12,6 +12,7 @@
 
         vm.guessed = guessed;
         vm.makeGuess = makeGuess;
+        vm.nextRound = nextRound;
 
         activate();
 
@@ -43,6 +44,12 @@
                 .then((response) => {
                     con.guessed = true;
                 });
+        }
+
+        function nextRound() {
+            vm.round = vm.nextRound;
+            _resetRound();
+            _getRound(vm.round);
         }
 
         function _getRound(round) {
