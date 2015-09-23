@@ -21,12 +21,18 @@
                     name: obj.name
                 }));
 
+            vm.round = vm.params.round;
+
             _resetRound();
-            _getRound(vm.params.round);
+            _getRound(vm.round);
 
             $rootScope.$on('roundstart', _handleRoundStart);
             $rootScope.$on('roundguess', _handleRoundGuess);
             $rootScope.$on('rounddone', _handleRoundDone);
+        }
+
+        function guessed() {
+            return vm.contributors.reduce((prev, next) => prev || next);
         }
 
         function _getRound(round) {
@@ -50,19 +56,26 @@
         }
 
         function _handleRoundStart(resource) {
-
+            vm.nextRound = resource.round;
         }
 
         function _handleRoundGuess(resource) {
-
+            vm.players[resource.username].hasGuess = true;
         }
 
         function _handleRoundDone(resource) {
-
+            if (vm.round == resource.round) {
+                vm.contibutor[resource.committer].correct = true;
+                vm.sha = resource.sha;
+                resource.guesses.forEach((guesser) => {
+                    vm.players[guesses].guess = guesser.guess;
+                });
+            }
         }
 
         function _resetRound() {
             vm.commit = '';
+            vm.sha = null;
             vm.linesAdd = 0;
             vm.linesRemove = 0;
 
@@ -74,6 +87,8 @@
                 vm.players[key].hasGuess = false;
                 vm.players[key].guess = null;
             }
+
+            vm.nextRound = null;
         }
     }
 })();
