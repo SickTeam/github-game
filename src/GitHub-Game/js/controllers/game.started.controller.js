@@ -10,6 +10,9 @@
     function gameActualController($rootScope, params, players, setup, apiService) {
         var vm = this;
 
+        vm.guessed = guessed;
+        vm.makeGuess = makeGuess;
+
         activate();
 
         function activate() {
@@ -32,7 +35,14 @@
         }
 
         function guessed() {
-            return vm.contributors.reduce((prev, next) => prev || next);
+            return vm.contributors.reduce((prev, next) => prev || next.guessed, false);
+        }
+
+        function makeGuess(con) {
+            apiService.putGuess(vm.params.gameId, vm.round, con.name)
+                .then((response) => {
+                    con.guessed = true;
+                });
         }
 
         function _getRound(round) {

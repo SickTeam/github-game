@@ -16,6 +16,7 @@
             getRound: getRound,
             getSetup: getSetup,
             getState: getState,
+            putGuess: putGuess,
             putSetup: putSetup,
             putState: putState
         };
@@ -61,6 +62,12 @@
         function getState(gameId) {
             return $q((resolve, reject) =>
                 $timeout(() => resolve({ state: 'started', round: 1 }), 367)
+            );
+        }
+
+        function putGuess(gameId, round, guess) {
+            return $q((resolve, reject) =>
+                $timeout(() => resolve(), 367)
             );
         }
 
