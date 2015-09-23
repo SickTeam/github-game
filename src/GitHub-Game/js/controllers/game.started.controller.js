@@ -14,7 +14,13 @@
 
         function activate() {
             vm.params = params;
-            vm.contributors = setup.contributors.filter((obj) => obj.active).map((obj) => obj.name);
+            vm.contributors = setup.contributors
+                .filter((obj) => obj.active)
+                .map((obj) => ({
+                    name: obj.name,
+                    guessed: false,
+                    correct: null
+                }));
 
             apiService.getRound(vm.params.gameId, vm.params.round)
                 .then((response) => {
@@ -33,7 +39,7 @@
         function _handleRoundStart(resource) {
 
         }
-        
+
         function _handleRoundGuess(resource) {
 
         }

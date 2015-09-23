@@ -9,13 +9,20 @@
     <h4>Guess who:</h4>
     <div class="container-fluid">
         <div class="row" ng-repeat="con in gameStarted.contributors">
-            <button type="button" class="btn btn-default" ng-click="!gameStarted.guessed && gameStarted.makeGuess(con)" ng-class="{'btn-success': con.truePos, 'btn-info': con.trueNeg, 'btn-danger': con.falsePos}">
+            <button type="button" class="btn btn-default" style="margin-right: 5px;"
+                    ng-click="!gameStarted.guessed && gameStarted.makeGuess(con)"
+                    ng-class="{'btn-info': (con.guessed && con.correct === null),
+                    'btn-success': (con.guessed && con.correct === true),
+                    'btn-danger': (con.guessed && con.correct === false)}">
                 #{{$index+1}}
             </button>
-            <strong>{{con}}</strong>
+            <strong>{{con.name}}</strong>
         </div>
         <div class="row">
-            <button type="button" class="btn btn-default pull-right" ng-disabled="!gameStarted.ready || gameStarted.stats.remaining === 0" ng-click="gameStarted.nextCommit()">Next commit</button>
+            <button type="button" class="btn btn-default pull-right"
+                    ng-disabled="!gameStarted.ready || gameStarted.stats.remaining === 0" ng-click="gameStarted.nextCommit()">
+                Next Commit
+            </button>
         </div>
     </div>
 </div>
