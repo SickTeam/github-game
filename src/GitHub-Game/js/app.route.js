@@ -52,7 +52,7 @@
                 url: '/started',
                 views: {
                     'game-content@game': {
-                        templateUrl: 'html/game.actual.html',
+                        templateUrl: 'html/game.started.html',
                         controller: 'gameActualController as gameStarted'
                     }
                 }
