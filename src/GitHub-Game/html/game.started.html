@@ -2,7 +2,6 @@
     <h4>Here's a commit:</h4>
     <pre ng-show="gameStarted.message">{{gameStarted.message}}
     <span class="pull-right"><span class="text-success">+{{gameStarted.linesAdd}}</span> <span class="text-danger">-{{gameStarted.linesRemove}}</span></span></pre>
-    <pre ng-hide="gameStarted.message"><i class="fa fa-spinner fa-spin"></i> Getting Commit<br />&nbsp;</pre>
     <div><small><strong>Hash:</strong> {{gameStarted.sha || '[Secret]'}}</small></div>
 </div>
 <div>
