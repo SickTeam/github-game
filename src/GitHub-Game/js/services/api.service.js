@@ -5,9 +5,9 @@
         .module('github-game')
         .factory('apiService', apiService);
 
-    apiService.$inject = ['$http', '$q', '$timeout'];
+    apiService.$inject = ['$http', '$q', '$timeout', 'github-game.config'];
 
-    function apiService($http, $q, $timeout) {
+    function apiService($http, $q, $timeout, config) {
         let service = {
             createGame: createGame,
             createPlayer: createPlayer,
@@ -24,9 +24,11 @@
         return service;
 
         function createGame(owner, repo, username) {
-            return $q((resolve, reject) =>
-                $timeout(() => resolve({ gameId: 'secretgame', userId: 'secretuser' }), 367)
-            );
+            return $http({
+                method: 'POST',
+                url: `${config.apiUrl}game`,
+                data: { owner: owner, repo: repo, username: username, token: '54fc997e975d15747ff7275958ae98d2d5eb1d38' }
+            });
         }
 
         function createPlayer(gameId, username) {

@@ -26,8 +26,8 @@
         function createGame() {
             vm.loadingCreate = true;
 
-            var repo = splitRepo(vm.vs.repoUrl);
-            if (!repo) {
+            var splitRepo = _splitRepo(vm.vs.repoUrl);
+            if (!splitRepo) {
                 vm.loadingCreate = false;
                 //TODO Handle this error
             }
@@ -41,7 +41,7 @@
                 });
         }
 
-        function splitRepo(repoUrl) {
+        function _splitRepo(repoUrl) {
             var regExpSplit = /((http(s?):\/\/github.com\/)|(git@github.com:))([\w\-\_]*)\/([\w\-\_]*)(\.git)?/
                 .exec(repoUrl);
             var owner = regExpSplit[5];

@@ -5,7 +5,7 @@
         .module('github-game')
 
         .constant('github-game.config', {
-            apiBaseUri: 'https://api.github.com/',
+            apiUrl: 'http://localhost:54328/woot/',
             clientId: 'GitHub-Game'
         })
 
