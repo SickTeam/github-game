@@ -58,9 +58,12 @@
         }
 
         function getSetup(gameId) {
-            return $q((resolve, reject) =>
-                $timeout(() => resolve({ contributors: [{ name: 'mikaelec', active: true }, { name: 'deaddog', active: true }], excludeMerges: true, toLowerCase: false }), 367)
-            );
+            return $http({
+                method: 'GET',
+                url: `${config.apiUrl}game/${gameId}/setup`
+            }).then((response) => {
+                return response.data;
+            });
         }
 
         function getState(gameId) {
