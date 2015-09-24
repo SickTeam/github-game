@@ -28,6 +28,8 @@
                 method: 'POST',
                 url: `${config.apiUrl}game`,
                 data: { owner: owner, repo: repo, username: username, token: '54fc997e975d15747ff7275958ae98d2d5eb1d38' }
+            }).then((response) => {
+                return response.data;
             });
         }
 
@@ -62,6 +64,13 @@
         }
 
         function getState(gameId) {
+            return $http({
+                method: 'GET',
+                url: `${config.apiUrl}game/${gameId}/state`
+            }).then((response) => {
+                return response.data;
+            });
+
             return $q((resolve, reject) =>
                 $timeout(() => resolve({ state: 'started', round: 1 }), 367)
             );
