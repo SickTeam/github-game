@@ -46,9 +46,16 @@
         }
 
         function getPlayers(gameId) {
-            return $q((resolve, reject) =>
-                $timeout(() => resolve({ 'mikaelec': {}, 'deaddog': {} }), 367)
-            );
+            return $http({
+                method: 'GET',
+                url: `${config.apiUrl}game/${gameId}/players`
+            }).then((response) => {
+                var playerDic = {};
+                response.data.forEach((playerName) => {
+                    playerDic[playerName] = {};
+                });
+                return playerDic;
+            });
         }
 
         function getRound(gameId, round) {
