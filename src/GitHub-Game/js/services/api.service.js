@@ -51,8 +51,8 @@
                 url: `${config.apiUrl}game/${gameId}/players`
             }).then((response) => {
                 var playerDic = {};
-                response.data.forEach((playerName) => {
-                    playerDic[playerName] = {};
+                response.data.forEach((player) => {
+                    playerDic[player.name] = {};
                 });
                 return playerDic;
             });
