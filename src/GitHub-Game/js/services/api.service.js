@@ -27,7 +27,7 @@
             return $http({
                 method: 'POST',
                 url: `${config.apiUrl}game`,
-                data: { owner: owner, repo: repo, username: username, token: '54fc997e975d15747ff7275958ae98d2d5eb1d38' }
+                data: { owner: owner, repo: repo, username: username, token: '9d1c535515608f8aebdd9530a05140936842fafb' }
             }).then((response) => {
                 return response.data;
             });

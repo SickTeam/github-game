@@ -33,7 +33,7 @@
 
         function getMessages() {
             if (!self.timestamp)
-                self.timestamp = new Date(new Date().setMinutes(-5));
+                self.timestamp = new Date();
 
             return $http({
                 method: 'GET',
