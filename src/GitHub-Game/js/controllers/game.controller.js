@@ -21,7 +21,7 @@
                 messageService.stop();
             });
 
-            messageService.start();
+            messageService.start(vm.params.gameId);
         }
 
         function _handlePlayers(resource) {
