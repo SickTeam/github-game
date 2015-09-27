@@ -99,9 +99,10 @@
         }
 
         function putState(gameId, newState) {
-            return $q((resolve, reject) =>
-                $timeout(() => resolve(), 367)
-            );
+            return $http({
+                method: 'PUT',
+                url: `${config.apiUrl}game/${gameId}/state`
+            });
         }
     }
 })();
