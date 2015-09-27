@@ -60,7 +60,7 @@
 
         function getRound(gameId, round) {
             return $q((resolve, reject) =>
-                $timeout(() => resolve({ message: 'blah', linesAdd: 14, linesRemove: 10, committer: 'deaddog' }))
+                $timeout(() => resolve({ message: 'blah', linesAdded: 14, linesRemoved: 10, committer: 'deaddog' }))
             );
         }
 
