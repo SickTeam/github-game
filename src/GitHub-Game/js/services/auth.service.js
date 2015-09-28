@@ -17,6 +17,7 @@
 
         var service = {
             addAuth: addAuth,
+            deleteGameIds,
             getCurrentAuth: getCurrentAuth,
             getPreviousGameIds: getPreviousGameIds,
             fillAuth: fillAuth,
@@ -27,6 +28,11 @@
 
         function addAuth(gameId, userId) {
             self.auth[gameId] = userId;
+            _setAuth(self.auth);
+        }
+
+        function deleteGameIds() {
+            self.auth = {};
             _setAuth(self.auth);
         }
 

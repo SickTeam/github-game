@@ -9,6 +9,7 @@
         var vm = this;
 
         vm.createGame = createGame;
+        vm.deleteGameIds = deleteGameIds;
 
         activate();
 
@@ -39,6 +40,11 @@
                 }, (errorResponse) => {
                     vm.loadingCreate = false;
                 });
+        }
+
+        function deleteGameIds() {
+            authService.deleteGameIds();
+            vm.previousGameIds = [];
         }
 
         function _splitRepo(repoUrl) {
