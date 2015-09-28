@@ -27,7 +27,7 @@
             return $http({
                 method: 'POST',
                 url: `${config.apiUrl}game`,
-                data: { owner: owner, repo: repo, username: username, token: '9d1c535515608f8aebdd9530a05140936842fafb' }
+                data: { owner: owner, repo: repo, username: username, token: 'fb20feb6104ccd9dbbe96f38eaa5e37505d75f85' }
             }).then((response) => {
                 return response.data;
             });
@@ -101,7 +101,9 @@
         function putState(gameId, newState) {
             return $http({
                 method: 'PUT',
-                url: `${config.apiUrl}game/${gameId}/state`
+                url: `${config.apiUrl}game/${gameId}/state`,
+                data: `=${newState}`,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
     }

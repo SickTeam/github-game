@@ -28,7 +28,7 @@
             vm.players.push(resource);
         }
 
-        function _handleState(resource) {
+        function _handleState(event, resource) {
             $state.go(`game.${resource.state}`, vm.params);
         }
     }

@@ -38,16 +38,17 @@
             return $http({
                 method: 'GET',
                 url: `${config.apiUrl}/game/${self.gameId}/messages`,
-                headers: { 'If-Modified-Since': self.timestamp.toISOString() }
+                headers: { 'If-Modified-Since': self.timestamp.toUTCString() }
             }).then(function (response) {
                 var newTimestamp = new Date(response.data.timestamp);
                 var messages = response.data.messages;
-                console.log(`${messages.length} new message(s) at ${newTimestamp.toISOString()}.`);
+                console.log(`${messages.length} new message(s) at ${newTimestamp.toUTCString()}.`);
 
                 self.timestamp = newTimestamp;
 
-                for (var message in messages)
+                messages.forEach((message) => {
                     broadcastMessage(message.name, message.resource);
+                });
             }, (response) => {
                 if (response.status === 304)
                     console.log("No new messages.");
